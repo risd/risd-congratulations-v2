@@ -1,0 +1,206 @@
+{% extends "templates/partials/base.html" %}
+
+{# Page Section data defintion #}
+{% set stories = item.universal__stories %}
+{% set programs = item.universal__orientation_programs %}
+{% set risd_resources_offices = item.universal__risd_resourcesoffices %}
+{% set providence_general_info = item.universal__providence_general_info %}
+{% set resources = item.universal__images_gallery %}
+{% set alumni = item.universal__alumni_bios %}
+{% set lists = item.universal__graphic_alumni_lists %}
+{% set dates_1 = item.universal__calendar_items_1 %}
+{% set dates = item.universal__calendar_items %}
+{% set information_snippets = item.universal__providence_specifics %}
+{% set postenrollment_info = item.universal__postenrollment_info %}
+{# END Page Section data defintion #}
+
+{# Meta Title and Description #}
+{% set currentSection = item.sections_pages[0] %}
+{% set currentSectionTitle = currentSection.name %}
+
+{% block title %}
+  {% if item.meta_title %}
+    {% set site_title = item.meta_title + site_title_suffix %}
+  {% elseif currentSectionTitle %}
+    {% set site_title = item.name + ' | ' + currentSectionTitle + ' | ' + getSetting('site_name') + site_title_suffix %}
+  {% else %}
+    {% set site_title = item.name + ' | ' + getSetting('site_name') + site_title_suffix %}
+  {% endif %}
+{% endblock %}
+{% block description %}
+  {% if item.meta_description %}
+    {% set site_description = item.meta_description %}
+  {% else %}
+    {% set site_description = getSetting('site_description') %}
+  {% endif %}
+{% endblock %}
+
+{# END Meta Title and Description #}
+
+{% block content %}
+
+  {% if item.description_background === "White" %}
+    {% set item.descriptionClass = "section--white" %}
+  {% elseif item.description_background === "Green" %}
+    {% set item.descriptionClass = "section--green" %}
+  {% endif %}
+
+  <main>
+
+  {# Hero image ------------------------------------------------------------ #}
+
+  {% if item.hero_image %}
+    {% set storyTitleClass = 'story__title--shadow' %}
+    <section class="section--full page__hero">
+      <div class="page__hero--desktop" style="background-image: url({{ item.hero_image|imageSize(1200) }})"></div>
+      <img src="{{ item.hero_image|imageSize(1200) }}" alt="" class="page__hero--mobile">
+    </section>
+  {% elseif item.edge_images %}
+    {% set storyTitleClass = '' %}
+    <section class="section--full page__edge-images">
+    {% for imagePair in item.edge_images %}
+      <div class="page__edge-image page__edge--left">
+        <img src="{{ imagePair.left_image|imageSize(600) }}" alt="">
+        {% if imagePair.left_image_caption %}
+          <figcaption class="page__edge-caption page__edge-caption--left">{{ imagePair.left_image_caption|safe }}</figcaption>
+        {% endif %}
+      </div>
+      <div class="page__edge-image page__edge--right">
+        <img src="{{ imagePair.right_image|imageSize(600) }}" alt="">
+        {% if imagePair.right_image_caption %}
+          <figcaption class="page__edge-caption page__edge-caption--right">{{ imagePair.right_image_caption|safe }}</figcaption>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </section>
+  {% endif %}
+
+
+  {# Page description ------------------------------------------------------------ #}
+
+  {% if item.description %}
+    <section class="section--full {{ item.descriptionClass }} page__description-container">
+      <div class="section__content--contained page__description">{{ item.description|safe }}</div>
+    </section>
+  {% endif %}
+
+
+  {# Stories ------------------------------------------------------------ #}
+
+  {% if stories %}
+    <section class="section--contained story">
+      {% include "templates/partials/stories.html" %}
+    </section>
+  {% endif %}
+
+
+  {# Programs ------------------------------------------------------------ #}
+
+  {% if programs %}
+    <section class="section--contained program">
+      {% include "templates/partials/programs.html" with { programs: programs } only %}
+    </section>
+  {% endif %}
+
+
+  {# Providence general info ------------------------------------------------------------ #}
+
+  {% if providence_general_info %}
+    <section class="section--contained program">
+      {% include "templates/partials/programs.html" with { programs: providence_general_info } only %}
+    </section>
+  {% endif %}
+
+
+  {# RISD Resources/Offices ------------------------------------------------------------ #}
+
+  {% if risd_resources_offices %}
+    <section class="section--contained program">
+      {% include "templates/partials/programs.html" with { programs: risd_resources_offices } only %}
+    </section>
+  {% endif %}
+
+
+  {# Important dates ------------------------------------------------------------ #}
+
+  {% if dates_1 %}
+    <section class="section--full calendar">
+      {# For the daily schedules #}
+      {% if item._id === '-KjxEaBwec6p_CtyF6TE' %}
+        {% include "templates/partials/dates--alt2.html" with { dates: dates_1, title: item.universal__calendar_items_title_1 } %}
+      {# For only audience based schedules #}
+      {% else %}
+        {% include "templates/partials/dates.html" with { dates: dates_1, title: item.universal__calendar_items_title_1 } %}
+      {% endif %}
+    </section>
+  {% endif %}
+
+  {% if dates %}
+    <section class="section--full calendar">
+      {# For the daily schedules #}
+      {% if item._id === '-KjxEaBwec6p_CtyF6TE' %}
+        {% include "templates/partials/dates--alt2.html" with { title: item.universal__calendar_items_title } %}
+      {# For only audience based schedules #}
+      {% else %}
+        {% include "templates/partials/dates.html" with { title: item.universal__calendar_items_title } %}
+      {% endif %}
+    </section>
+  {% endif %}
+
+
+  {# Post-enrollment info ------------------------------------------------------------ #}
+
+  {% if postenrollment_info %}
+    <section class="section--full calendar">
+      {% include "templates/partials/infos.html" with { infos: postenrollment_info } %}
+    </section>
+  {% endif %}
+
+
+  {# Resources (image gallery) ------------------------------------------------------------ #}
+
+  {% if resources %}
+    <section class="section--full resource">
+      {% include "templates/partials/resources.html" %}
+    </section>
+  {% endif %}
+
+
+  {# Alumni bios ------------------------------------------------------------ #}
+
+  {% if alumni %}
+    <section class="section--contained alumni">
+      {% include "templates/partials/alumni.html" %}
+    </section>
+  {% endif %}
+
+
+  {# Alumni Lists ------------------------------------------------------------ #}
+
+  {% if lists %}
+    <section class="section--full list">
+      {% include "templates/partials/lists.html" %}
+    </section>
+  {% endif %}
+
+
+  {# Information snippets ------------------------------------------------------------ #}
+
+  {% if information_snippets %}
+    <section class="section--contained info-snippets">
+      {% include "templates/partials/information_snippets.html" %}
+    </section>
+  {% endif %}
+
+
+  {# Footer Hero ------------------------------------------------------------ #}
+
+  {% if item.footer_hero_image %}
+    <section class="section--full page__footer-hero">
+      <div class="page__hero--desktop" style="background-image: url({{ item.footer_hero_image|imageSize(1200) }})"></div>
+      <img src="{{ item.footer_hero_image|imageSize(1200) }}" alt="" class="page__hero--mobile">
+    </section>
+  {% endif %}
+
+  </main>
+{% endblock %}

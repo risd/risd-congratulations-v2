@@ -1,0 +1,14 @@
+{% for list in lists %}
+  <div class="section__content--contained list__container">
+    {% for list_item in list.list_items %}
+      {% if loop.first %}
+        <p class="list__text">
+          <span class="list__intro">{{ list.intro_line }}</span>
+      {% endif %}
+          <a href="{{ list_item.link }}" class="list__link">{{ list_item.title }}</a>
+      {% if loop.last %}
+        </p>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endfor %}

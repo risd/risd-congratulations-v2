@@ -1,20 +1,20 @@
-{# ------------------------------------------------------- #}
-
-{# 404 PAGE #}
-
-{# This is the 404 page that will display on the live site for users. #}
-{# It does not appear when you run your site locally. #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
 {% block content %}
 
-  <h1>404 - Nothing to see here</h1>
-
-  <p><a href="/">Take me home!</a></p>
+  <main>
+    <section class="section--contained not-found">
+      <figure class="not-found__emoji">
+        <img src="/static/images/ios_ghost.png"/>
+      </figure>
+      <h1 class="not-found__title">
+        Page not found!
+      </h1>
+      <figure class="not-found__emoji">
+        <a class="not-found__emoji-link" href="/"><img src="/static/images/ios_home.png"/></a>
+        <figcaption>Emoji designed by Willem Van Lancker [BFA 10/Graphic Design]</figcaption>
+      </figure>
+    </section>
+  </main>
 
 {% endblock %}

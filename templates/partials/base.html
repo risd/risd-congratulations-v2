@@ -1,57 +1,90 @@
-{# ------------------------------------------------------- #}
-
-{# YOUR BASE TEMPLATE. EVERYTHING GETS LOADED INTO THIS PAGE. #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+  <!--<![endif]-->
 
-  {# Grab the title and description from the CMS general settings. #}
-  {% set site_title = getSetting('site_name')%}
-  {% set site_description = getSetting('site_description')%}
+
+{# Grab the title and description from the CMS general settings. #}
+{% set site_title = getSetting('site_name') %}
+{% set site_description = getSetting('site_description') %}
+{% set site_url = getSetting('site_url') %}
+{% set site_analytics = getSetting('analytics_id') %}
+{% set facebook_image = site_url + "/static/images/social/facebook.png" %}
+{% set twitter_image = site_url + "/static/images/social/twitter.png" %}
+{% set site_title_suffix = ' | Rhode Island School of Design' %}
+{% block title %}
+  {% set site_title = getSetting('site_name') + site_title_suffix %}
+{% endblock %}
+{% block description %}
+  {% set site_description = getSetting('site_description') %}
+{% endblock %}
 
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>{% block title %}{{ site_title|default('Webhook site') }}{% endblock %}</title>
-    <meta name="description" content="{% block description %}{{ site_description|default('Built with Webhook.') }}{% endblock %}">
-    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8"/>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
+    <title>{{ site_title }}</title>
+    <meta content="{{ site_description }}" name="description"/>
+    <meta content="width=device-width" name="viewport"/>
 
-    <link rel="shortcut icon" href="/static/images/favicon.png">
-    <link rel="apple-touch-icon" href="/static/images/touch-icon.png">
+    <meta property="og:image" content="{{ facebook_image }}"/>
+    <meta property="og:image:width" content="640" />
+    <meta property="og:image:height" content="442" />
+    <meta property="og:title" content="{{ site_title }}"/>
+    <meta property="og:url" content="{{ site_url }}"/>
+    <meta property="og:description" content="{{ site_description }}"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{ site_title }}"/>
+    <meta name="twitter:description" content="{{ site_description }}"/>
+    <meta name="twitter:image" content="{{ twitter_image }}"/>
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css">
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{{ site_url }}/static/images/favicons/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{{ site_url }}/static/images/favicons/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ site_url }}/static/images/favicons/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{{ site_url }}/static/images/favicons/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ site_url }}/static/images/favicons/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{{ site_url }}/static/images/favicons/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ site_url }}/static/images/favicons/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{{ site_url }}/static/images/favicons/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ site_url }}/static/images/favicons/apple-touch-icon-180x180.png" />
+    <link rel="icon" type="image/png" href="{{ site_url }}/static/images/favicons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="{{ site_url }}/static/images/favicons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ site_url }}/static/images/favicons/favicon-16x16.png" sizes="16x16" />
+    <meta name="application-name" content="&nbsp;"/>
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="{{ site_url }}/static/images/favicons/ms-icon-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="{{ site_url }}/static/images/favicons/ms-icon-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="{{ site_url }}/static/images/favicons/ms-icon-150x150.png" />
+    <meta name="msapplication-square310x310logo" content="{{ site_url }}/static/images/favicons/ms-icon-310x310.png" />
 
-    {# Put your CSS in here and we'll minify it into one file. No CDN scripts. More info: #}
-    {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
 
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet"/>
+
+
+    <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/641934/610604/css/fonts.css" />
     <!-- build:css /static/css/minified.css -->
-    <link rel="stylesheet" href="/static/css/wysiwyg_figures.css"/>
     <link rel="stylesheet" href="/static/css/site.css"/>
     <!-- endbuild -->
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-    <!-- Global Site Tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ getSetting('analytics_id') }}"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments)};
-      gtag('js', new Date());
-
-      gtag('config', '{{ getSetting('analytics_id') }}');
+      dataLayer = [];
     </script>
 
+    <!-- Slate Ping -->
+    <script async src="https://admissions.risd.edu/ping"></script>
+    <!-- End Slate Ping -->
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-W7Z3HSL');</script>
+    <!-- End Google Tag Manager -->
 
     {# Useful block for loading outside scripts in other pages. #}
     {% block head_extra %}{% endblock %}
@@ -61,6 +94,11 @@
       <!--[if lt IE 7]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
       <![endif]-->
+
+      <!-- Google Tag Manager (noscript) -->
+      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W7Z3HSL"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
 
       {% block header %}
         {% include "templates/partials/header.html" %}
@@ -73,13 +111,18 @@
         {% include "templates/partials/footer.html" %}
       {% endblock %}
 
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
       {# Put your JS in here and we'll minify it into one file. No CDN scripts. More info: #}
       {# http://www.webhook.com/docs/minify-your-js-and-css/ #}
 
+      
       <script src="/static/javascript/site.js"></script>
+      
 
       {% block scripts_extra %}{% endblock %}
 
     {% endblock %}
+
   </body>
 </html>

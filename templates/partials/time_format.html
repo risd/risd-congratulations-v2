@@ -1,0 +1,118 @@
+{# Display time according to editorial style guide #}
+{# if a start time exists #}
+{% if event.start_time %}
+
+  {# if the start time is in the morning #}
+  {% if event.start_time | date('a') === "am" %}
+    {# set morning start to true #}
+    {% set morning_start = true %}
+  {# else if the start time is in the evening #}
+  {% elseif event.start_time | date('a') === "pm" %}
+    {# set morning start to false #}
+    {% set morning_start = false %}
+  {% else %}
+    {# set morning start to undefined #}
+    {% set morning_start = undefined %}
+  {% endif %}
+
+  {# and if end time exists #}
+  {% if event.end_time %}
+    {# if the end time is in the morning #}
+    {% if event.end_time | date('a') === "am" %}
+      {# set morning end to true #}
+      {% set morning_end = true %}
+    {# else if the end time is in the evening #}
+    {% elseif event.end_time | date('a') === "pm" %}
+      {# set morning end to false #}
+      {% set morning_end = false %}
+    {% else %}
+      {# set morning end to undefined #}
+      {% set morning_end = undefined %}
+    {% endif %}
+  {% else %}
+    {# set morning end to undefined #}
+    {% set morning_end = undefined %}
+  {% endif %}
+
+  {# if there is only a start time #}
+  {% if morning_end === undefined %}
+    {# if the minutes is 00 #}
+    {% if event.start_time | date('i') === '00' %}
+      {# show only the hh am/pm #}
+      <time class="calendar__times">{{ event.start_time|date('g a') }} (Eastern Time)</time>
+    {% else %}
+      {# show hh:mm am/pm #}
+      <time class="calendar__times">{{ event.start_time|date('g:i a') }} (Eastern Time)</time>
+    {% endif %}
+
+    {# if there start time and end time are in the morning #}
+  {% elseif morning_start === true && morning_end === true %}
+    {# for the start time, if the minutes is 00 #}
+    {% if event.start_time | date('i') === '00' %}
+      {# show only the hh #}
+      <time class="calendar__times">{{ event.start_time|date('g') }}
+      {% else %}
+        {# show hh:mm #}
+        <time class="calendar__times">{{ event.start_time|date('g:i') }}
+        {% endif %}
+        {% if event.end_time %}
+          {# for the end time, if the minutes is 00 #}
+          {% if event.end_time | date('i') === '00' %}
+            {# show only the - hh am #}
+            &#8211;
+            {{ event.end_time|date('g a') }} (Eastern Time)</time>
+        {% else %}
+          {# show - hh:mm am #}
+          &#8211;
+          {{ event.end_time|date('g:i a') }} (Eastern Time)</time>
+      {% endif %}
+    {% endif %}
+
+    {# if there start time and end time are in the evening #}
+  {% elseif morning_start === false && morning_end === false %}
+    {# for the start time, if the minutes is 00 #}
+    {% if event.start_time | date('i') === '00' %}
+      {# show only the hh #}
+      <time class="calendar__times">{{ event.start_time|date('g') }}
+      {% else %}
+        {# show hh:mm #}
+        <time class="calendar__times">{{ event.start_time|date('g:i') }}
+        {% endif %}
+        {% if event.end_time %}
+          {# for the end time, if the minutes is 00 #}
+          {% if event.end_time | date('i') === '00' %}
+            {# show only the - hh pm #}
+            &#8211;
+            {{ event.end_time|date('g a') }} (Eastern Time)</time>
+        {% else %}
+          {# show - hh:mm pm #}
+          &#8211;
+          {{ event.end_time|date('g:i a') }} (Eastern Time)</time>
+      {% endif %}
+    {% endif %}
+
+    {# if there start time is in the morning and end time in the evening #}
+  {% elseif morning_start === true && morning_end === false %}
+    {# for the start time, if the minutes is 00 #}
+    {% if event.start_time | date('i') === '00' %}
+      {# show only the hh am #}
+      <time class="calendar__times">{{ event.start_time|date('g a') }}
+      {% else %}
+        {# show hh:mm am #}
+        <time class="calendar__times">{{ event.start_time|date('g:i a') }}
+        {% endif %}
+        {% if event.end_time %}
+          {# for the end time, if the minutes is 00 #}
+          {% if event.end_time | date('i') === '00' %}
+            {# show only the - hh pm #}
+            &#8211;
+            {{ event.end_time|date('g a') }} (Eastern Time)</time>
+        {% else %}
+          {# show - hh:mm pm #}
+          &#8211;
+          {{ event.end_time|date('g:i a') }} (Eastern Time)</time>
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+{% endif %}

@@ -1,41 +1,117 @@
-{# ------------------------------------------------------- #}
-
-{# YOUR HOMEPAGE #}
-
-{# Webhook uses the SWIG.js (like Djagno/Twig) templating system. Their documentation is here: #}
-{# http://paularmstrong.github.io/swig/docs/tags/ #}
-
-{# Learn about calling data into Webhook pages here: #}
-{# http://www.webhook.com/docs/template-rules-and-filters/ #}
-
-{# ------------------------------------------------------- #}
-
-{# Confused what extends and blocks do? Watch a primer: #}
-{# http://www.webhook.com/docs/template-inheritance-blocks/ #}
 {% extends "templates/partials/base.html" %}
 
-{# This sets our page <title>. It will append "- Homepage" to the site title defined in base. #}
-{% block title %}{% parent %} - Homepage{% endblock %}
+{% block title %}{% parent %}{% endblock %}
 
 {% block content %}
 
-  <h1>Hello world!</h1>
-
-  <p>This is your homepage, located at /pages/index.html.</p>
-
-  <p><a href="/cms/">Looking for the CMS?</a></p>
-
-  {# If you have at least content page type, we show a list. #}
-  {% if cms_types|size !== 0 %}
-
-    <h3>Content types you've created in the CMS so far.</h3>
-
-    <ul>
-    {% for type in cms_types %}
-      <li><a href="{{ url(type) }}">{{ type.name }}</a></li>
-    {% endfor %}
-    </ul>
-
+  {# Phase 1 - Enrollment #}
+  {% if cms.phases.current_phase === "Enrollment" %}
+    {% set home = cms.phase1home %}
+  {# Phase 2 - Orientation #}
+  {% elseif cms.phases.current_phase === "Orientation" %}
+    {% set home = cms.ph2home %}
   {% endif %}
+
+  <main>
+
+    <section class="section--full home__hero">
+      <div class="home__hero--center" style="background-image: url({{ home.hero_image|imageSize(1200) }})"></div>
+      <div class="home__hero-text">
+        <h4 class="home__hero-caption">{{ home.intro_line }}</h4>
+        <div class="home__hero-logo">{% include "templates/partials/icons/wordmark.html" %}</div>
+        {% if home.deposit_button_url && home.deposit_button_text %}
+          <div class="home__hero-button button">
+            <a href="{{ home.deposit_button_url }}">{{ home.deposit_button_text }} <span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a>
+          </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="section--full home">
+    {% for module in home.grid %}
+      {% set sizeClass = module.size|lower %}
+      {% if module.size === "Full" %}
+        {% set imageDimension = 1200 %}
+      {% elseif module.size === "Half" %}
+        {% set imageDimension = 600 %}
+      {% endif %}
+      <div class="home-module home-module--{{ sizeClass }}">
+
+        {# Large button #}
+        {% if module.show_large_button === true %}
+          <h2 class="home-module__button home-module__button--{{ module.large_button_background_color|lower }}"><a href="{{ module.large_button_link }}" target="_self">{{ module.large_button_text }}<span class="home-module__button-toggle">{% include "templates/partials/icons/arrow--clothed.html" %}</span></a></h2>
+        {% endif %}
+
+        {# Narrative Moment #}
+        {% if module.show_narrative_moment === true %}
+        <div class="home-module__narrative">
+          {# Image #}
+          {% if module.narrative_image %}
+            <img class="home-module__narrative-image" src="{{ module.narrative_image|imageSize(imageDimension) }}" alt="">
+          {% endif %}
+          {# Video #}
+          {% if module.narrative_video %}
+            <div class="home-module__narrative-video">{{ module.narrative_video.html|safe }}</div>
+          {% endif %}
+          {# Text #}
+          <div class="home-module__narrative-text">
+            <h3 class="home-module__narrative-title">{{ module.narrative_title }}</h3>
+            <div class="home-module__narrative-description">{{ module.narrative_description|safe }}</div>
+            {# Link #}
+            {% if module.narrative_link_text %}
+              <div class="home-module__narrative-link button">
+                <a href="{{ module.narrative_link_url }}">{{ module.narrative_link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a>
+              </div>
+            {% endif %}
+          </div>
+
+        </div>
+        {% endif %}
+
+        {# Quotation #}
+        {% if module.show_quotation === true %}
+        <div class="home-module__quote">
+          {{ module.quotation_text|safe }}
+          <cite class="home-module__quote-citation">{{ module.quotation_citation }}</cite>
+        </div>
+        {% endif %}
+
+        {# Lists #}
+        {% if module.show_list === true %}
+        <div class="home-module__list">
+          <p class="home-module__list-text">
+            <span class="home-module__list-intro">{{ module.related_list.intro_line }}</span>
+            {% for person in module.related_list.list_items|slice(0, 20) %}
+              <a href="{{ person.link }}">{{ person.title }}</a>
+              {% if loop.last %}
+                <span class="home-module__list-more">…</span>
+              {% endif %}
+            {% endfor %}
+          </p>
+          <div class="home-module__list-button button">
+            <a href="{{ module.list_link_url }}">{{ module.list_link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a>
+          </div>
+        </div>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+
+      {# Contact #}
+      <div class="home-module home-module--full">
+        <div class="home-module__contact">
+          <div class="home-module__contact-social">
+            <a href="http://twitter.com/risd">{% include "templates/partials/icons/twitter.html" %}</a>
+            <a href="http://facebook.com/risd1877">{% include "templates/partials/icons/facebook.html" %}</a>
+            <a href="https://www.instagram.com/risd1877/">{% include "templates/partials/icons/instagram.html" %}</a>
+          </div>
+          <div class="home-module__contact-hashtag">{{ home.contact_hastag }}</div>
+          <p class="home-module__contact-link button"><a href="{{ home.contact_link_url }}">{{ home.contact_link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
 
 {% endblock %}

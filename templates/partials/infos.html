@@ -1,0 +1,98 @@
+{% if infos.length %}
+  <div class="section__content--contained calendar__container">
+
+    {% if item.audience_filters === true %}
+      <div class="calendar__filter">
+      {% spaceless %}
+        {% for filterItem in cms.audience %}
+          {% set filterUrl = filterItem.name|lower|replace('\|','-','g')|replace(' ','-','g') %}
+          {% if filterItem.active === true %}
+            <a href="#{{ filterUrl }}" class="calendar__audience initial">{{ filterItem.name }}</a>
+          {% endif %}
+        {% endfor %}
+      {% endspaceless %}
+      </div>
+    {% endif %}
+
+
+    {% for info in infos %}
+
+      {% if info.start_date %}
+        {% set info.hasDate = true %}
+      {% else %}
+        {% set info.hasDate = false %}
+      {% endif %}
+
+      {% set info.fullName = info.name %}
+      {% set info.colonPos = info.fullName.indexOf(':') + 1 %}
+      {% set info.lastCharPos = info.fullName.length %}
+      {% set info.editedName = info.fullName|slice(info.colonPos, info.lastCharPos) %}
+
+      {% set info.idList = [] %}
+      {% for audience in info.audiences %}
+        {% set audience.spaceless = audience.name|lower|replace('\|','-','g')|replace(' ','-','g') %}
+        {% set info.idList = info.idList.concat([audience.spaceless]) %}
+      {% endfor %}
+      {% set info.idListText = info.idList|join(' ') %}
+
+      {% set info.groupName = info.universal__calendar_item_groups.name %}
+
+    {% endfor %}
+
+
+    <div class="calendar__date-group">
+      {% for info in infos %}
+        {% if loop.first %}
+          <h2 class="calendar__section-title">
+            {% if item.universal__postenrollment_info_title %}
+              {{ item.universal__postenrollment_info_title }}
+            {% else %}
+              More Info
+            {% endif %}
+          </h2>
+        {% endif %}
+
+        <div class="calendar__item {{ info.idListText }}">
+          {% if info.end_date %}
+            <div class="calendar__dates">
+              <div class="calendar__date">
+              {% if info.start_date|date('F') === info.end_date|date('F') %}
+                <h4 class="calendar__month">{{ info.start_date|date('F') }}</h4>
+                <h1 class="calendar__day">{{ info.start_date|date('j') }}<span>-</span>{{ info.end_date|date('j') }}</h1>
+              {% else %}
+                <h4 class="calendar__month">{{ info.start_date|date('M') }}/{{ info.end_date|date('M') }}</h4>
+                <h1 class="calendar__day">{{ info.start_date|date('j') }}<span>-</span>{{ info.end_date|date('j') }}</h1>
+              {% endif %}
+              </div>
+            </div>
+          {% elseif info.start_date %}
+            <div class="calendar__dates">
+              <div class="calendar__date">
+                <h4 class="calendar__month">{{ info.start_date|date('F') }}</h4>
+                <h1 class="calendar__day">{{ info.start_date|date('j') }}</h1>
+              </div>
+            </div>
+          {% endif %}
+
+          <div class="calendar__text">
+        <h3 class="calendar__title" {% if info.description %}data-description-exists{% endif %}>{{ info.editedName }}{% if info.description %}<span class="calendar__toggle">{% include "templates/partials/icons/arrow--clothed.html" %}</span>{% endif %}</h3>
+            {% include "templates/partials/time_format.html" with {
+              event: date
+            } %}
+            {% if info.description %}
+              <div class="calendar__description">{{ info.description|safe }}</div>
+            {% endif %}
+            {% if info.related_links %}
+              <ul class="calendar__links">
+                {% for link in info.related_links %}
+                  <li class="calendar__link button"><a href="{{ link.link_url }}" {% if link.link_url|includes("//") %}target="_blank" rel="noopener"{% endif %}>{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+{% endif %}

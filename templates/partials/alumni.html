@@ -1,0 +1,36 @@
+{% for person in alumni %}
+
+  <div class="alumni__person">
+    <div class="alumni__portrait">
+    {% if person.portrait %}
+      <img src="{{ person.portrait|imageSize(300) }}" alt="">
+    {% endif %}
+    </div>
+
+    <div class="alumni__text">
+      <div class="alumni__header">
+        <h3 class="alumni__name">{{ person.name }}<span class="alumni__toggle">{% include "templates/partials/icons/arrow--clothed.html" %}</span></h3>
+        <h4 class="alumni__title">{{ person.degree }}</h4>
+        <h4 class="alumni__title">{{ person.title }}</h4>
+      </div>
+      <div class="alumni__description">{{ person.description|safe }}</div>
+      {% if person.related_links %}
+        <ul class="alumni__links">
+          {% for link in person.related_links %}
+            <li class="alumni__link button"><a href="{{ link.link_url }}">{{ link.link_title }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+
+    {% if person.work_image %}
+      <figure class="alumni__work">
+        <img data-resize-src="{{ person.work_image.resize_url }}" src="{{ person.work_image|imageSize(1200) }}" alt="" class="alumni__work-image">
+        {% if person.caption %}
+          <figcaption class="alumni__work-caption">{{ person.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endif %}
+
+  </div>
+{% endfor %}

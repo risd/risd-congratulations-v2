@@ -1,0 +1,30 @@
+{% set resource_images = [] %}
+
+{% for resource in resources %}
+  {% for image in resource.images %}
+    {% set image.caption = resource.name %}
+    {% set image.link_url = resource.link_url %}
+    {% set image.hide_caption = resource.hide_caption %}
+    {% set resource_images = resource_images.concat([image]) %}
+  {% endfor %}
+{% endfor %}
+
+{% for resource_image in resource_images %}
+  {% set class_suffix = resource_image.size|lower %}
+  <div class="resource__image-container resource__image--{{ class_suffix }}">
+    <figure class="resource__image">
+      <img data-resize-src="{{ resource_image.image.resize_url }}" src="{{ resource_image.image|imageSize(1000) }}" alt="">
+    </figure>
+    {% if resource_image.hide_caption !== true %}
+      {% if resource_image.link_url %}
+        <figcaption class="resource__caption button"><a href="{{ resource_image.link_url }}">{{ resource_image.caption }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></figcaption>
+      {% else %}
+        <figcaption class="resource__caption">{{ resource_image.caption }}</figcaption>
+      {% endif %}
+    {% endif %}
+
+  </div>
+  {% if loop.last %}
+    <div class="resource__sizer"></div>
+  {% endif %}
+{% endfor %}

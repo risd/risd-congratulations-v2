@@ -1,0 +1,95 @@
+{% set noEvent = getItem('universalcalendaritems', '-KfwaBoOHN2NvXy7q4V6') %}
+
+<div class="section__content--contained calendar__container">
+
+  {% for date in dates %}
+
+    {% if date.start_date %}
+      {% set date.hasDate = true %}
+    {% else %}
+      {% set date.hasDate = false %}
+    {% endif %}
+
+    {% set date.fullName = date.name %}
+    {% set date.colonPos = date.fullName.indexOf(':') + 1 %}
+    {% set date.lastCharPos = date.fullName.length %}
+    {% set date.editedName = date.fullName|slice(date.colonPos, date.lastCharPos) %}
+
+    {% set date.idList = [] %}
+    {% for audience in date.audiences %}
+      {% set audience.spaceless = audience.name|lower|replace('\|','-','g')|replace(' ','-','g') %}
+      {% set date.idList = date.idList.concat([audience.spaceless]) %}
+    {% endfor %}
+    {% set date.idListText = date.idList|join(' ') %}
+
+    {% set date.groupName = date.universal__calendar_item_groups.name %}
+
+  {% endfor %}
+
+
+  {% for dateGroup in dates|groupBy('groupName') %}
+
+    <div class="calendar__date-group">
+
+    {% set dateGroupName = loop.key %}
+
+    {% for date in dateGroup %}
+      {% if loop.first %}
+        <h2 class="calendar__section-title filtered">
+          {% if item.universal__calendar_items_title %}
+            {{ item.universal__calendar_items_title }}
+          {% else %}
+            {{ dateGroupName }}
+          {% endif %}
+        </h2>
+      {% endif %}
+
+      <div class="calendar__item {{ date.idListText }} filtered">
+        {% if date.end_date %}
+          <div class="calendar__dates">
+            <div class="calendar__date">
+              <h4 class="calendar__month">{{ date.start_date|date('F') }}</h4>
+              <h1 class="calendar__day">{{ date.start_date|date('j') }}<span>-</span>{{ date.end_date|date('j') }}</h1>
+            </div>
+          </div>
+        {% elseif date.start_date %}
+          <div class="calendar__dates">
+            <div class="calendar__date">
+              <h4 class="calendar__month">{{ date.start_date|date('F') }}</h4>
+              <h1 class="calendar__day">{{ date.start_date|date('j') }}</h1>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="calendar__text">
+      <h3 class="calendar__title" {% if date.description %}data-description-exists{% endif %}>{{ date.editedName }}{% if date.description %}<span class="calendar__toggle">{% include "templates/partials/icons/arrow--clothed.html" %}</span>{% endif %}</h3>
+          {% include "templates/partials/time_format.html" with {
+            event: date
+          } %}
+          {% if date.description %}
+            <div class="calendar__description">{{ date.description|safe }}</div>
+          {% endif %}
+          {% if date.related_links %}
+            <ul class="calendar__links">
+              {% for link in date.related_links %}
+                <li class="calendar__link button"><a href="{{ link.link_url }}" {% if link.link_url|includes("//") %}target="_blank" rel="noopener"{% endif %}>{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+
+    {% endfor %}
+
+    </div>
+
+  {% endfor %}
+
+    <div class="calendar__item calendar__item--no-event">
+      <div class="calendar__text">
+        <h3 class="calendar__title">{{ noEvent.name }}</h3>
+        <div class="calendar__description">{{ noEvent.description|safe }}</div>
+      </div>
+    </div>
+
+</div>

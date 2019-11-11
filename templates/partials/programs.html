@@ -1,0 +1,19 @@
+{% for program in programs %}
+  <div class="program__item">
+  {% if program.image %}
+    <div class="program__image">
+      <a href="{{ program.link_url }}" target="_blank"><img src="{{ program.image|imageSize(600) }}" alt=""></a>
+    </div>
+  {% endif %}
+    <div class="program__text">
+      <h3 class="program__title">
+      {% if program.link_url %}
+        <a href="{{ program.link_url }}" target="_blank">{{ program.name }}</a>
+      {% else %}
+        {{ program.name }}
+      {% endif %}
+      </h3>
+      <div class="program__description">{{ program.description|safe }}</div>
+    </div>
+  </div>
+{% endfor %}

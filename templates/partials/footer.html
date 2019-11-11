@@ -1,0 +1,59 @@
+{% set footer = cms.footer %}
+
+<footer class="footer__container">
+  <div class="footer__contact">
+    <div class="footer__logo">{% include "templates/partials/icons/seal-simplified.html" %}</div>
+    <div class="footer__info">
+      <p>
+        {{ footer.address.street1 }}<br>
+        {% if footer.address.street2 %}
+          {{ footer.address.street2 }}<br>
+        {% endif %}
+        {{ footer.address.city }}, {{ footer.address.state }} {{ footer.address.zip }}<br>
+        {{ footer.address.country }}
+      </p>
+      <p><a href="mailto:{{ footer.email }}">{{ footer.email }}</a></p>
+      <p><a href="/contact/">additional contact information</a></p>
+      <div class="footer__social">
+        <a href="http://twitter.com/risd">{% include "templates/partials/icons/twitter.html" %}</a>
+        <a href="http://facebook.com/risd1877">{% include "templates/partials/icons/facebook.html" %}</a>
+        <a href="https://www.instagram.com/risd1877/">{% include "templates/partials/icons/instagram.html" %}</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__sections">
+    {# Phase 1 - Enrollment #}
+    {% if cms.phases.current_phase === "Enrollment" %}
+      {% for section in cms.phase1primarynav.phase_1__secondary_nav_items %}
+        <div class="footer__section-container">
+          <p class="footer__title">{{ section.name }}</p>
+          <ul class="footer__pages">
+            {% for page in section.universal__pages %}
+              <li class="footer__subtitle"><a href="{{ url(page) }}">{{ page.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    {# Phase 2 - Orientation #}
+    {% elseif cms.phases.current_phase === "Orientation" %}
+      {% for section in cms.phase2primarynav.phase_2__secondary_nav_items %}
+        <div class="footer__section-container">
+          <p class="footer__title">{{ section.name }}</p>
+          <ul class="footer__pages">
+            {% for page in section.universal__pages %}
+              <li class="footer__subtitle"><a href="{{ url(page) }}">{{ page.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="footer__external-links">
+    <p class="footer__title">{{ footer.external_websites_title }}</p>
+    <ul>
+      {% for website in footer.external_websites %}
+        <li class="footer__subtitle"><a href="{{ website.link_url }}">{{ website.link_text }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</footer>

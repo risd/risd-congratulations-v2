@@ -1,0 +1,15 @@
+{% for snippet in information_snippets %}
+  <div class="info-snippets__item">
+    <div class="info-snippets__text">
+      <h3 class="info-snippets__title">{{ snippet.name }}</h3>
+      <div class="info-snippets__description">{{ snippet.description|safe }}</div>
+      {% if snippet.related_links %}
+        <ul class="info-snippets__links">
+        {% for link in snippet.related_links %}
+          <li class="info-snippets__link button"><a href="{{ link.link_url }}">{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}

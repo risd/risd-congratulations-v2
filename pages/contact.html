@@ -1,0 +1,68 @@
+{% extends "templates/partials/base.html" %}
+
+{% set contact = cms.universalcontact %}
+
+{% block title %}
+  {% if contact.meta_title %}
+    {% set site_title = contact.meta_title + site_title_suffix %}
+  {% elseif currentSectionTitle %}
+    {% set site_title = contact.name + ' | ' + currentSectionTitle + ' | ' + getSetting('site_name') + site_title_suffix %}
+  {% else %}
+    {% set site_title = contact.name + ' | ' + getSetting('site_name') + site_title_suffix %}
+  {% endif %}
+{% endblock %}
+{% block description %}
+  {% if contact.meta_description %}
+    {% set site_description = contact.meta_description %}
+  {% else %}
+    {% set site_description = getSetting('site_description') %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <main>
+
+  {% if contact.description %}
+    <section class="section--full section--green page__description-container">
+      <div class="section__content--contained page__description">{{ contact.description|safe }}</div>
+    </section>
+  {% endif %}
+
+    <section class="section--contained contact">
+      {% for person in contact.contacts %}
+        {% if loop.first %}
+          <h2 class="contact__section-title">{{ contact.contact_title }}</h2>
+        {% endif %}
+        <div class="contact__person">
+          <h3 class="contact__name">{{ person.name }}</h3>
+          <p class="contact__department">{{ person.department }}</p>
+          <a href="mailto: {{ person.email }}" class="contact__email">{{ person.email }}</a><br>
+          <a href="tel: {{ person.phone_1 }}" class="contact__phone">{{ person.phone_1 }}</a>
+          {% if person.phone_2 %}
+            <br><a href="tel: {{ person.phone_2 }}" class="contact__phone">{{ person.phone_2 }}</a>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      {% for snippet in contact.information_snippets %}
+        <div class="contact__info">
+          <h2 class="contact__section-title">{{ snippet.title }}</h2>
+          {{ snippet.description|safe }}
+          <a href="{{ snippet.button_url }}" class="contact__info-link button">{{ snippet.button_text }}</a>
+        </div>
+      {% endfor %}
+
+      <div class="contact__social">
+        <h2 class="contact__section-title">{{ contact.social_media_title }}</h2>
+        <a href="http://twitter.com/risd">{% include "templates/partials/icons/twitter.html" %}</a>
+        <a href="http://facebook.com/risd1877">{% include "templates/partials/icons/facebook.html" %}</a>
+        <a href="https://www.instagram.com/risd1877/">{% include "templates/partials/icons/instagram.html" %}</a>
+      </div>
+
+    </section>
+
+
+  </main>
+
+{% endblock %}

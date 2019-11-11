@@ -1,0 +1,7 @@
+<div class="story__header">
+  <h2 class="story__title {{ storyTitleClass }}">{{ stories.name }}</h2>
+  {% if stories.subtitle %}
+    <h3 class="story__subtitle">{{ stories.subtitle }}</h3>
+  {% endif %}
+</div>
+<div class="story__text">{{ stories.story|safe }}</div>
