@@ -1,0 +1,172 @@
+.footer__container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: $text-color;
+  padding: 2rem 5%;
+  text-align: center;
+
+  @include respond-above(small) {
+    text-align: left;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.footer__contact {
+  flex-basis: 100%;
+  box-sizing: border-box;
+
+  @include respond-above(small) {
+    padding-right: 2rem;
+  }
+
+  @include respond-above(large) {
+    flex-basis: 25%;
+  }
+
+  @include respond-above(huge) {
+    flex-basis: calc(100% / 6);
+    padding: 2rem 4rem 2rem 0;
+  }
+}
+
+.footer__logo {
+  margin-bottom: 1rem;
+  svg {
+    width: 4rem;
+  }
+
+  path {
+    fill: $pop-color;
+  }
+}
+
+.footer__info {
+  p {
+    color: $background-color;
+    @extend %sans-serif;
+    @include text-size($sans-s);
+    font-weight: bold;
+
+    & + p {
+      margin-top: 0.5rem;
+    }
+  }
+
+  a {
+    color: $pop-color;
+    border-bottom: none;
+
+    &:hover {
+      color: $background-color;
+    }
+  }
+}
+
+.footer__social {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include respond-above(small) {
+    justify-content: flex-start;
+  }
+
+  a {
+    flex-basis: 2rem;
+    padding: 0 1rem;
+    border-bottom: none;
+    line-height: 0;
+
+    &:hover {
+      path,
+      circle {
+        fill: $background-color;
+      }
+    }
+
+    @include respond-above(small) {
+      padding: 0;
+      padding-right: 1rem;
+    }
+  }
+
+  path,
+  circle {
+    fill: $pop-color;
+    transition: fill 0.2s ease;
+  }
+}
+
+.footer__sections {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include respond-above(large) {
+    flex-basis: 50%;
+  }
+
+  @include respond-above(huge) {
+    flex-basis: calc(100% / 6 * 4);
+  }
+}
+
+.footer__section-container {
+  flex-basis: 100%;
+
+  @include respond-above(small) {
+    flex-basis: 50%;
+  }
+
+  @include respond-above(huge) {
+    flex-basis: 25%;
+    padding-right: 4rem;
+    box-sizing: border-box;
+  }
+}
+
+.footer__title {
+  color: $background-color;
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  font-weight: bold;
+  margin-top: 2rem;
+}
+
+.footer__pages {
+  list-style: none;
+}
+
+.footer__subtitle {
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  font-weight: bold;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+
+  a {
+    color: $pop-color;
+    border-bottom: none;
+
+    &:hover {
+      color: $background-color;
+    }
+  }
+}
+
+.footer__external-links {
+  flex-basis: 100%;
+
+  @include respond-above(large) {
+    flex-basis: 25%;
+  }
+
+  @include respond-above(huge) {
+    flex-basis: calc(100% / 6);
+  }
+}

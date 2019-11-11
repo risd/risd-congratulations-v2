@@ -1,0 +1,98 @@
+.contact {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.contact__section-title {
+  flex-basis: 100%;
+  color: $pop-color;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.contact__person {
+  margin-bottom: 8rem;
+  @extend %serif;
+  flex-basis: 100%;
+  box-sizing: border-box;
+
+  @include respond-above(small) {
+    flex-basis: 50%;
+    padding-right: 2rem;
+  };
+}
+
+.contact__name {
+  @extend %sans-serif;
+  margin-bottom: 1rem;
+}
+
+.contact__department {
+  @extend %serif;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.contact__email {
+  
+}
+
+.contact__phone {
+  
+}
+
+.contact__info {
+  margin-bottom: 8rem;
+  flex-basis: 100%;
+
+  p {
+    max-width: 40em;
+  }
+}
+
+.contact__info-link {
+
+}
+
+.contact__social {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 8rem;
+
+  a {
+    border-bottom: none;
+    height: 4rem;
+    width: 4rem;
+    margin: 0 0.5rem 1rem 0.5rem;
+
+    @include respond-above(small) {
+      height: 6rem;
+      width: 6rem;
+      margin: 0 1rem 1rem 1rem;
+    };
+
+    @include respond-above(medium) {
+      height: 8rem;
+      width: 8rem;
+      margin: 0 2rem 2rem 2rem;
+    };
+
+    &:hover {
+      path, circle {
+        fill: $text-color;
+      }
+    }
+  }
+
+  svg {
+
+  }
+
+  path, circle {
+    fill: $pop-color;
+    transition: fill 0.2s ease;
+  }
+}

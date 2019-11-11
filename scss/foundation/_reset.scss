@@ -1,0 +1,141 @@
+/* Layout */
+body {
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
+
+main {
+  display: block;
+}
+
+/* Text */
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: inherit;
+}
+
+dl,
+dd,
+ol,
+ul,
+p,
+address,
+blockquote,
+figure,
+figcaption,
+pre {
+  // margin: 0;
+}
+
+ol,
+ul {
+ 
+}
+
+pre {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+small {
+  font-size: 0.75em;
+}
+
+sub,
+sup {
+  position: relative;
+  vertical-align: baseline;
+  font-size: 0.75em;
+  line-height: 0;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content */
+img {
+  border: 0;
+}
+
+/* Forms */
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend {
+  padding: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+  bottom: 0;
+  color: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-appearance: textfield;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0;
+}
+
+th {
+  vertical-align: bottom;
+}
+
+td {
+  vertical-align: top;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,206 @@
+@font-face {
+  font-family: "Modern Pictograms";
+  font-weight: 100;
+  src: url("../fonts/modernpictogramspro_234.eot"), url("../fonts/modernpictogramspro_234.ttf"), url("../fonts/modernpictogramspro_234.woff");
+}
+
+%sans-serif {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+%serif {
+  font-family: "Mercury Text G1 A", "Mercury Text G1 B", "Georgia", "Times New Roman", "Times", serif;
+}
+
+
+%antialiased {
+  -webkit-font-smoothing:antialiased;
+  -moz-font-smoothing:antialiased;
+  font-smoothing:antialiased;
+}
+
+%pictographic {
+  font-family: "Modern Pictograms";
+  line-height: 1;
+}
+
+%small-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+%inline-link {
+  color: $text-color;
+  border-bottom: 1px solid $pop-color;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $pop-color;
+  }
+}
+
+
+/* --------------------------------------------------------
+
+Remove the unit of a length
+@param {Number} $number - Number to remove unit from
+@return {Number} - Unitless number
+
+-------------------------------------------------------- */
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+
+/* --------------------------------------------------------
+
+Variable Map Lists for the text-size mixin
+
+A specific text-size in this mixin is defined with a font-size and a leading.
+
+For example,
+  small: (64px, 72px)
+  where small is the media query width defined in the $breakpoints map-list in _responsive.scss,
+  64px is the font-size
+  72px is the line-height (which will be converted to a unitless value for the browser in the mixin)
+
+
+The definition of each font-size/leading pair can be different for each media query width.
+This is an example of a font size with different definitions for each media query width:
+  $medium: (
+    base: (12px, 18px),
+    small: (14px, 20px),
+    medium: (16px, 24px),
+    large: (18px, 28px),
+    huge: (20px, 32px)
+  ) ;
+This is generally an unusual situation because it would involve a pretty complicated typography system.
+
+
+A more common example would be something like this:
+  $xlarge: (
+    base: (52px, 60px),
+    small: (64px, 72px),
+    medium: (64px, 72px),
+    large: (72px, 80px),
+    huge: (72px, 80px)
+  ) ;
+
+This definition includes redundant repitition of values, so it can be defined more simply like this:
+  $xlarge: (
+    base: (52px, 60px),
+    small: (64px, 72px),
+    large: (72px, 80px)
+  ) ;
+
+-------------------------------------------------------- */
+
+// X-Small
+$sans-xs:(
+  base:(9px, 12px),
+  medium:(11px, 14px)
+);
+
+$serif-xs:(
+  base:(10px, 14px),
+  medium:(13px, 16px)
+);
+
+// Small
+$sans-s:(
+  base:(11px, 14px),
+  medium:(14px, 21px)
+);
+
+$serif-s:(
+  base:(14px, 18px),
+  medium:(16px, 21px)
+);
+
+// Medium
+
+$sans-m:(
+  base:(16px, 20px),
+  medium:(24px, 28px)
+);
+
+
+$serif-m:(
+  base:(16px, 23px),
+  small:(16px, 23px),
+  medium:(16px, 23px)
+);
+
+// Large
+$sans-l:(
+  base:(21px, 28px),
+  medium:(30px, 38px)
+);
+
+$serif-l:(
+  base:(24px, 28px),
+  medium:(36px, 42px)
+);
+
+
+// XL
+$sans-xl:(
+  base:(36px, 36px),
+  medium:(64px, 64px)
+);
+
+$serif-xl:(
+  base:(36px, 36px),
+  medium:(72px, 72px)
+);
+
+// XXL
+$sans-xxl:(
+  base:(48px, 48px),
+  medium:(110px,110px)
+);
+
+$date-numbers:(
+  base: (64px, 64px)
+);
+
+
+/* --------------------------------------------------------
+Mixin for font-size and line-height definition
+  Usage Example: @include text-size(large);
+
+Font size can take on the following values:
+  small, regular, medium, large, xlarge, xxlarge
+
+If the mixin is called and values are not entered, it will default to regular font-size
+-------------------------------------------------------- */
+
+@mixin text-size($fs-map: $regular, $fs-breakpoints: $breakpoints) {
+  @each $fs-breakpoint, $keyNumber in $fs-map {
+
+    @if map-has-key($fs-breakpoints, $fs-breakpoint) {
+    } @else {
+      @warn "Breakpoints have not been defined correctly";
+    }
+
+    // @debug $fs-breakpoint;
+    // @debug $keyNumber;
+
+    $fontSize: nth($keyNumber, 1);
+    $leading: nth($keyNumber, 2);
+    $leading-unitless: calc(#{strip-unit($leading)} / #{strip-unit($fontSize)});
+
+    // @debug $fontSize;
+    // @debug $leading;
+    // @debug $leading-unitless;
+
+    @include respond-above($fs-breakpoint) {
+      font-size: $fontSize;
+      line-height: $leading-unitless;
+    };
+  }
+}

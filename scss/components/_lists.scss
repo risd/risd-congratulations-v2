@@ -1,0 +1,28 @@
+.list {
+  background-color: $pop-color;
+  padding: 5rem 0;
+}
+
+.list__container {
+
+}
+
+.list__text {
+  @extend %sans-serif;
+  @include text-size($sans-l);
+  font-weight: bold;
+}
+
+.list__intro {
+  @extend %serif;
+  font-style: italic;
+  font-weight: normal;
+}
+
+.list__link {
+  border-bottom: 0.1em solid $background-color;
+
+  &:hover {
+    color: $background-color;
+  }
+}

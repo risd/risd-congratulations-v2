@@ -1,0 +1,8 @@
+$text-color: rgb(78, 78, 85);
+$text-color--light: rgb(171, 171, 171);
+$background-color: rgb(255, 255, 255);
+$pop-color: rgb(241, 246, 50);
+
+%object-multiply{
+	mix-blend-mode:multiply;
+}

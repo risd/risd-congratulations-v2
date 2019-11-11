@@ -1,0 +1,185 @@
+//Basic Setup-------------------------------------------
+html {
+  @extend %sans-serif;
+  @include text-size($serif-m);
+  color: $text-color;
+}
+
+body {
+  @include text-size($serif-m);
+  color: $text-color;
+  background-color: $background-color;
+  width: 100%;
+}
+
+main {
+  position: relative;
+}
+
+h1 {
+  @extend %sans-serif;
+  @include text-size($sans-xxl);
+  font-weight: bold;
+  color: $text-color;
+  letter-spacing: -0.05em;
+}
+
+h2 {
+  @extend %sans-serif;
+  @include text-size($sans-xl);
+  font-weight: bold;
+  color: $text-color;
+  letter-spacing: -0.04em;
+}
+
+h3 {
+  @extend %sans-serif;
+  @include text-size($sans-m);
+  color: $text-color;
+  letter-spacing: -0.03em;
+}
+
+h3 + p {
+  margin-top: 0.5em;
+}
+
+h4 {
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  font-weight: bold;
+  color: $text-color;
+}
+
+h5 {
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  font-weight: bold;
+  color: $text-color;
+}
+
+h6 {
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  font-weight: bold;
+  color: $text-color;
+}
+
+p {
+  @extend %serif;
+  @include text-size($serif-m);
+  color: $text-color;
+  margin: 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+p + p {
+  margin-top: 1rem;
+}
+
+p + h5 {
+  margin-top: 1rem;
+}
+
+a {
+  @extend %inline-link;
+  display: inline;
+
+  p & {
+    display: inline;
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+
+i,
+em {
+  font-style: italic;
+}
+
+// FOR REMOVAL if not used in the site
+// figcaption {
+// @extend %sans-serif;
+// @include text-size($regular);
+//
+//   span {
+//   }
+// }
+
+blockquote {
+  @extend %sans-serif;
+  font-weight: bold;
+  color: $text-color;
+  margin: 0;
+  letter-spacing: -0.04em;
+}
+
+cite {
+  @include text-size($sans-s);
+  display: block;
+  text-align: left;
+  @extend %sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0em;
+}
+
+ol,
+ul {
+  margin-bottom: 1rem;
+  padding-left: 1.5em;
+
+  li {
+    margin-bottom: 1em;
+    @extend %serif;
+    color: $text-color;
+    @include text-size($serif-m);
+
+    ul,
+    ol {
+      margin-left: 3rem;
+      margin-bottom: 1rem;
+      li {
+        margin-bottom: 1rem;
+      }
+    }
+    ul {
+    }
+    ol {
+    }
+  }
+}
+
+div,
+img {
+  max-width: 100%;
+}
+
+iframe {
+  width: 100%;
+}
+
+button {
+  @include text-size($sans-m);
+  font-weight: bold;
+  color: $text-color;
+  background: none;
+  border: none;
+  // position:relative;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  @extend %sans-serif;
+  @include text-size($sans-s);
+  color: $text-color--light;
+}
+
+//Extra Setup ---------------------------------------

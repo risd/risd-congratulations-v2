@@ -1,0 +1,25 @@
+.button {
+
+  a {
+    background-color: $pop-color;
+    color: $text-color;
+    font-style: italic;
+  }
+
+  &:hover {
+    a {
+      color: $text-color;
+    }
+
+    .button__arrow {
+      padding-left: 0.5rem;
+    }
+  }
+}
+
+.button__arrow {
+  transition: all 0.2s ease;
+  .arrow {
+    height: 0.6em;
+  }
+}

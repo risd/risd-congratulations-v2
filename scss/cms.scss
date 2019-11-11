@@ -1,1 +1,153 @@
+//Variables and mixins
+@import "dependencies/color";
+@import "dependencies/type";
+
+//Components
 @import "components/wysiwyg-custom";
+
+body {
+  text-rendering: optimizeLegibility;
+
+  a {
+    display: inline;
+  }
+
+  h3 {
+
+  }
+}
+
+.wh-logo {
+  background-image: url("../images/logo.svg");
+  background-color: red;
+  border:10px solid red;
+  width: 255px;
+  height: 100px;
+  border-radius: 0;
+  background-size: 245px 160px;
+}
+
+.wh-login{
+  background:red!important;
+}
+
+// SIDE NAVIGATION
+.wy-nav-side {
+  .wy-menu {
+    ul {
+      li {
+
+      }
+    }
+  }
+}
+
+.wy-nav-content {
+
+}
+
+// DATA ENTRY
+.wh-content-edit {
+  label {
+
+    // font-family:$t-font--tertiary;
+    // font-size:$t-size--xsmall;
+  }
+}
+
+.wy-control {
+  .big-name {
+    text-rendering: optimizeLegibility;
+  }
+}
+
+// FORM MESSAGES / INSTRUCTIONS
+.wy-form-message {
+
+}
+
+// WYSIWYG EDITOR --------------------------
+.redactor-editor {
+  display: flex;
+  flex-wrap: wrap;
+
+  figure[data-type=quote] {
+    border-left: none;
+
+    cite {
+
+    }
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  ol,
+  ul {
+
+  }
+
+  p {
+
+  }
+
+  h1 {
+
+  }
+
+  h2 {
+
+  }
+
+  h3 {
+
+  }
+
+  h4 {
+
+  }
+
+  ol {
+
+  }
+
+  ul {
+
+  }
+}
+
+.redactor-dropdown {
+  .redactor-dropdown-p {
+
+  }
+
+  .redactor-dropdown-h1 {
+
+  }
+
+  .redactor-dropdown-h2 {
+
+  }
+
+  .redactor-dropdown-h3 {
+
+  }
+
+  .redactor-dropdown-h4 {
+
+  }
+
+  .redactor-dropdown-h5 {
+
+  }
+
+  .redactor-dropdown-code {
+
+  }
+
+  .redactor-dropdown-pre {
+
+  }
+}

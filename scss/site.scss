@@ -1,1 +1,30 @@
+//Variables and mixins
+@import "dependencies/responsive";
+@import "dependencies/color";
+@import "dependencies/type";
+
+//CSS reset and basic styling for html elements.
+@import "foundation/reset";
+@import "foundation/base";
+
+//Global components that exist on multiple pages, but not necessarily all pages
+@import "components/button";
+@import "components/arrow";
+@import "components/main-nav";
+@import "components/footer";
 @import "components/wysiwyg-custom";
+@import "components/home";
+@import "components/page";
+@import "components/story";
+@import "components/alumni";
+@import "components/lists";
+@import "components/calendar";
+@import "components/information-snippets";
+@import "components/programs";
+@import "components/resources";
+@import "components/contact";
+@import "components/404";
+@import "components/lightbox";
+
+//Page specific modules, which hopefully can distill down even further into components.
+// @import "pages/test";
