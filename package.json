@@ -18,7 +18,8 @@
     "build-page": "grunt build-page",
     "build-pages": "grunt build-pages",
     "build-template": "grunt build-template",
-    "develop": "rm-wh serve"
+    "develop": "rm-wh serve",
+    "configuration": "rm-wh conf congratulations-v2"
   },
   "homepage": "https://github.com/risd/webhook-generate",
   "dependencies": {
