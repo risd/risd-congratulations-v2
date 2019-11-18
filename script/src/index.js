@@ -20,7 +20,7 @@ var resourceImageLightbox = require('./lightbox.js')({
 });
 var smartquotes = require('smartquotes')();
 var linkTarget = require('./linkTarget.js')();
-var calendarFilter = require('./calendarFilter.js')();
+// var calendarFilter = require('./calendarFilter.js')();
 var calendarAccordion = require('./calendarAccordion.js')();
 var alumniAccordion = require('./alumniAccordion.js')();
 var edgeImageShift = require('./edgeImageShift.js')();

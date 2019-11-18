@@ -2,17 +2,6 @@
   margin: 4rem 0;
 }
 
-.calendar__filter {
-  list-style: none;
-  padding-left: 0;
-  // display: flex;
-  // flex-wrap: wrap;
-  margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px dashed $pop-color;
-  text-align: center;
-}
-
 .calendar__audience {
   @extend %serif;
   margin-right: 1rem;
@@ -101,36 +90,23 @@
     background-color: $pop-color;
     color: $text-color;
   }
-
-  &.initial {
-    display: none;
-  }
-
 }
 
 .calendar__section-title {
-  display: none;
+  display: block;
   color: $pop-color;
   text-align: center;
   margin-bottom: 3rem;
   margin-top: 4rem;
-
-  &.filtered {
-    display: block;
-  }
 }
 
 .calendar__item {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
   border-bottom: 1px solid $pop-color;
-  display: none;
+  display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-
-  &.filtered {
-    display: flex;
-  }
 
   &.hide {
     display: none;
