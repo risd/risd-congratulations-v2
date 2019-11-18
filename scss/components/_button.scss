@@ -1,9 +1,13 @@
 .button {
+  cursor: e-resize;
 
   a {
+    @extend %serif;
     background-color: $pop-color;
     color: $text-color;
     font-style: italic;
+    padding: 0.3em 0.5em;
+    cursor: e-resize;
   }
 
   &:hover {

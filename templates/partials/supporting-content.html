@@ -1,0 +1,45 @@
+<section class="supporting-content section--white section--full">
+  <div class="section__content--contained">
+    {% if item.title %}
+      <h3 id="{{ item.title|slugify }}" class="supporting-content__title">
+        {{ item.title }}
+      </h3>
+    {% endif %}
+    
+
+    <div class="supporting-content__description {% if item.image %}supporting-content__description--has-image{% endif %}">
+      <div class="supporting-content__text">
+        <div class="supporting-content__html">
+          {{ item.description|safe }}
+        </div>
+
+        {% if item.button_text && item.button_url %}
+          <div class="button">
+            <a
+              class="supporting-content__button"
+              href="{{ item.button_url }}"
+              {% if item.button_url|includes("://") %}
+                target="_blank"
+                rel="noopener"
+              {% endif %}
+            >
+              {{ item.button_text }}
+              <span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span>
+            </a>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if item.image %}
+        <figure class="supporting-content__figure">
+          <img
+            src="{{ item.image|imageSize(640) }}"
+            srcset="{{ item.image|imageSize(1280) }} 2x"
+            width="320"
+            alt=""
+          >
+        </figure>
+      {% endif %}
+    </div>
+  </div>
+</section>

@@ -85,6 +85,15 @@
   {% endif %}
 
 
+  {# Supporting Content ------------------------------------------------------------ #}
+
+  {% for content in item.supporting_content %}
+    {% include "templates/partials/supporting-content.html" with {
+      item: content
+    } only %}
+  {% endfor %}
+
+
   {# Stories ------------------------------------------------------------ #}
 
   {% if stories %}
