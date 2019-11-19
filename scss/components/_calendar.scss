@@ -93,6 +93,7 @@
 }
 
 .calendar__section-title {
+  @include text-size($sans-l);
   display: block;
   color: $pop-color;
   text-align: center;

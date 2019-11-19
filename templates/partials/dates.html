@@ -30,13 +30,13 @@
     {% if dateGroupName != "More Info" %}
       {% for date in dateGroup %}
         {% if loop.first %}
-          <h2 class="calendar__section-title">
+          <h3 class="calendar__section-title">
             {% if title %}
               {{ title }}
             {% else %}
               {{ dateGroupName }}
             {% endif %}
-          </h2>
+          </h3>
         {% endif %}
 
         <div class="calendar__item">

@@ -22,13 +22,13 @@
     <div class="calendar__date-group">
       {% for info in infos %}
         {% if loop.first %}
-          <h2 class="calendar__section-title">
+          <h3 class="calendar__section-title">
             {% if item.universal__postenrollment_info_title %}
               {{ item.universal__postenrollment_info_title }}
             {% else %}
               More Info
             {% endif %}
-          </h2>
+          </h3>
         {% endif %}
 
         <div class="calendar__item">
