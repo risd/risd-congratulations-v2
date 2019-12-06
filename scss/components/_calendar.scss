@@ -94,6 +94,8 @@
 
 .calendar__section-title {
   @include text-size($sans-l);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   display: block;
   color: $pop-color;
   text-align: center;

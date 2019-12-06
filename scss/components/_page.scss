@@ -188,7 +188,9 @@
 }
 
 .page__description-container {
-  padding: 5rem 0;
+  padding: 3rem 0 0 0;
+  margin-bottom: 0;
+
   width: 100% !important;
 
   &:not(:last-of-type) {
