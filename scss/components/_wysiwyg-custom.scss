@@ -106,3 +106,10 @@ figure[data-type=quote] {
   cite {
   }
 }
+
+.required-symbol {
+  @extend %sans-serif;
+  @include text-size($required-symbol);
+  color: $pop-color;
+  font-weight: bold;
+}

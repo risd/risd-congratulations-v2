@@ -1,2 +1,38 @@
 <link rel="shortcut icon" href="/static/images/favicon.png">
 <link rel="apple-touch-icon-precomposed" href="/static/images/touch-icon.png"/>
+
+<script>
+  window.WebhookRedactorOptions = {
+    formattingAdd: [
+      {
+        tag: 'p',
+        title: 'Normal text'
+      },
+      {
+        tag: 'h1',
+        title: 'Header 1'
+      },
+      {
+        tag: 'h2',
+        title: 'Header 2'
+      },
+      {
+        tag: 'h3',
+        title: 'Header 3'
+      },
+      {
+        tag: 'h4',
+        title: 'Header 4'
+      },
+      {
+        tag: 'h5',
+        title: 'Header 5'
+      },
+      {
+        tag: 'span',
+        title: 'Required Symbol',
+        class: 'required-symbol',
+      }
+    ],
+  }
+</script>
