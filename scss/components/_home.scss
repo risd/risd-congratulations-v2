@@ -56,11 +56,11 @@
   flex-basis: 100%;
   text-align: center;
 
-  a {
-    @extend %serif;
+  &.button a {
+    @extend %sans-serif;
     @include text-size($serif-l);
     margin-top: 2rem;
-    font-style: italic;
+    color: $text-color;
     background-color: $pop-color;
     padding: 0.3em 0.5em;
     display: inline-block;
@@ -68,6 +68,7 @@
     transition: background-color 0.2s ease;
 
     &:hover {
+      color: $text-color;
       background-color: $background-color;
     }
   }
@@ -287,9 +288,6 @@
   margin-top: 2rem;
   a {
     display: inline-block;
-    @extend %serif;
-    background-color: $background-color;
-    padding: 0.3em 0.5rem;
   }
 }
 
