@@ -30,7 +30,11 @@
   margin-left: 2.5rem;
 }
 
-[data-react-component='Nav'] nav ul > li > span:hover:not(.main-nav__section-toggle),
+[data-react-component='Nav'] .main-nav__useful-links-heading ul {
+  margin-left: 1rem;
+}
+
+[data-react-component='Nav'] nav ul > li.main-nav__section-heading > span:hover:not(.main-nav__section-toggle),
 [data-react-component='Nav'] nav ul > li.main-nav__section--active > span:not(.main-nav__section-toggle) {
   background-color: rgba($pop-color, 0.7);
 }
@@ -68,9 +72,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  transform-origin: 50% 50%;
   width: 22px;
   height: 28px;
+  transform-origin: 50% 50%;
   transform: rotate(180deg);
   transition: transform 0.28s ease;
 }
@@ -86,4 +90,23 @@
 
 .main-nav__section--opened .main-nav__section-toggle {
   transform: rotate(0deg) translate(5px, -5px);
+}
+
+.main-nav__useful-links-heading {
+  color: $pop-color;
+  margin-top: 1.5rem;
+}
+
+.main-nav__useful-link {
+  position: relative;
+}
+
+.main-nav__useful-link-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 28px;
+  transform-origin: 50% 50%;
+  transform: rotate(-45deg);
 }

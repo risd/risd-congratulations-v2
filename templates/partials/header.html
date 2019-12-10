@@ -41,6 +41,21 @@
   }]) %}
 {% endfor %}
 
+{% set usefulLinks = [] %}
+{% for usefulLink in nav.useful_links %}
+  {% set usefulLink.className = 'main-nav__useful-link' %}
+  {% set usefulLinks = usefulLinks.concat([usefulLink]) %}
+{% endfor %}
+
+{% if usefulLinks|size > 0 %}
+  {% set usefulLinksItem = {
+    text: nav.useful_links_text,
+    className: 'main-nav__useful-links-heading',
+    subitems: usefulLinks,
+  } %}
+  {% set navItems = navItems.concat([usefulLinksItem]) %}
+{% endif %}
+
 {% react "Nav" with {
   siteTitle: "",
   homepageUrl: "/",
