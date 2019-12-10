@@ -1,0 +1,89 @@
+[data-react-component='Nav'] {
+  display: none;
+}
+
+[data-react-component='Nav'] li {
+  @extend %sans-serif;
+}
+
+[title='Go to homepage'] {
+  font-weight: 900 !important;
+}
+
+[data-react-component='Nav'] li > span {
+  text-transform: none;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+[data-react-component='Nav'] a {
+  font-weight: bold;
+  border-bottom: none;
+}
+[data-react-component='Nav'] nav ul > li,
+[data-react-component='Nav'] nav ul > li > ul > li {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+[data-react-component='Nav'] ul ul {
+  margin-left: 2.5rem;
+}
+
+[data-react-component='Nav'] nav ul > li > span:hover:not(.main-nav__section-toggle),
+[data-react-component='Nav'] nav ul > li.main-nav__section--active > span:not(.main-nav__section-toggle) {
+  background-color: rgba($pop-color, 0.7);
+}
+
+[data-react-component='Nav'] ul li > a,
+[data-react-component='Nav'] ul li.main-nav__page--active > a {
+  &:hover {
+    text-decoration: none;
+    color: $pop-color;
+  }
+}
+
+[data-react-component='Nav'] ul li.main-nav__page--active > a {
+  color: $pop-color;
+}
+
+.main-nav__section-heading {
+  position: relative;
+  cursor: pointer;
+}
+
+.main-nav__section-heading {
+
+}
+
+.main-nav__section-heading > ul {
+  display: none;
+}
+
+.main-nav__section--opened.main-nav__section-heading ul {
+  display: block;
+}
+
+.main-nav__section-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform-origin: 50% 50%;
+  width: 22px;
+  height: 28px;
+  transform: rotate(180deg);
+  transition: transform 0.28s ease;
+}
+
+.main-nav__section-toggle .toggle-geometry {
+  stroke: $text-color;
+}
+
+.main-nav__section-toggle svg {
+  width: 22px;
+  height: 28px;
+}
+
+.main-nav__section--opened .main-nav__section-toggle {
+  transform: rotate(0deg);
+}

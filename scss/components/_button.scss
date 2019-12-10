@@ -11,18 +11,25 @@
     cursor: e-resize;
   }
 
+  .arrow-geometry {
+    fill: $pop-color;
+  }
+
   &:hover {
     a {
-      color: $text-color;
+      color: $background-color;
     }
     .button__arrow {
       padding-left: 0.5rem;
+    }
+    .arrow-geometry {
+      fill: $background-color;
     }
   }
 }
 
 .button__arrow {
-  transition: all 0.2s ease;
+  transition: all 0.28s ease;
   .arrow {
     height: 0.6em;
   }
