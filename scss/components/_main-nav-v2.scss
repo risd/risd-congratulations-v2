@@ -51,6 +51,14 @@
   color: $pop-color;
 }
 
+.main-nav__home-link {
+  text-transform: uppercase;
+}
+
+.main-nav__home-link a {
+  padding: 0.5rem 1rem;
+}
+
 .main-nav__section-heading {
   position: relative;
   cursor: pointer;
