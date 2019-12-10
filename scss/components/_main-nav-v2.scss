@@ -77,6 +77,7 @@
   transform-origin: 50% 50%;
   transform: rotate(180deg);
   transition: transform 0.28s ease;
+  pointer-events: none;
 }
 
 .main-nav__section-toggle .toggle-geometry {
@@ -101,12 +102,36 @@
   position: relative;
 }
 
+.main-nav__useful-link:hover a {
+  color: $pop-color;
+  text-decoration: none;
+}
+
+.main-nav__useful-link a,
+.main-nav__useful-link a:focus,
+.main-nav__useful-link a:link,
+.main-nav__useful-link a:visited,
+.main-nav__useful-link a:hover,
+.main-nav__useful-link a:active {
+  text-decoration: none;
+}
+
 .main-nav__useful-link-icon {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   width: 22px;
   height: 28px;
   transform-origin: 50% 50%;
-  transform: rotate(-45deg);
+  transform: rotate(-45deg) translate(3px, -4px);
+}
+
+.main-nav__useful-link-icon .external-geometry {
+  transition: fill 0.2s ease, stroke 0.2s ease;
+  stroke: $text-color;
+}
+
+.main-nav__useful-link:hover .external-geometry {
+  stroke: $pop-color;
+  fill: $pop-color;
 }
