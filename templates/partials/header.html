@@ -10,7 +10,11 @@
 
 {% set currentUrl = getCurrentUrl() %}
 
-{% set navItems = [] %}
+{% set navItems = [{
+  text: 'Home',
+  url: '/',
+  className: 'main-nav__home-link',
+}] %}
 
 {% for section in sections %}
   {% set activeSection = false %}
