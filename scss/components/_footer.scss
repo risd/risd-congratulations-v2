@@ -2,10 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   background-color: $text-color;
-  padding: 2rem 5%;
+  // padding: 2rem 5%;
   text-align: center;
 
-  @include respond-above(small) {
+  @include respond-above(large) {
     text-align: left;
   }
 
@@ -15,12 +15,36 @@
   }
 }
 
+.footer__final {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .footer__contact {
   flex-basis: 100%;
+  padding-top: 2rem;
+  order: 3;
   box-sizing: border-box;
 
-  @include respond-above(small) {
+  p, a {
+    @extend %sans-serif;
+    color: $pop-color;
+  }
+
+  a,
+  a:hover,
+  a:visited {
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  @include respond-above(large) {
     padding-right: 2rem;
+    padding-top: 0;
+    order: 2;
   }
 
   @include respond-above(large) {
@@ -34,19 +58,51 @@
 }
 
 .footer__logo {
-  margin-bottom: 1rem;
-  svg {
-    width: 4rem;
+  width: 50%;
+  box-sizing: border-box;
+  order: 4;
+  margin: 0 auto;
+  padding-top: 2rem;
+
+  @include respond-above(large) {
+    padding: 0;
+    margin-top: 0;
+    width: 25%;
+    order: 1;
   }
+}
+
+.footer__logo--simplified {
+  display: block;
+  @include respond-above(large) {
+    display: none;
+  }
+}
+
+.footer__logo--full {
+  display: none;
+  @include respond-above(large) {
+    display: block;
+  }
+}
+
+.footer__logo svg {
+  max-width: 50px;
+  margin: 0 auto;
 
   path {
     fill: $pop-color;
+  }
+
+  @include respond-above(large) {
+    margin: 0;
+    max-width: 200px;
   }
 }
 
 .footer__info {
   p {
-    color: $background-color;
+    color: $pop-color;
     @extend %sans-serif;
     @include text-size($sans-s);
     font-weight: bold;
@@ -66,76 +122,71 @@
   }
 }
 
-.footer__social {
-  margin: 1rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.footer__social-links {
+  width: 100%;
+  order: 1;
 
-  @include respond-above(small) {
-    justify-content: flex-start;
+  @include respond-above(large) {
+    width: 25%;
+    order: 3;
   }
+}
 
-  a {
-    flex-basis: 2rem;
-    padding: 0 1rem;
-    border-bottom: none;
-    line-height: 0;
+.footer__social-links ul {
+  list-style: none;
+}
 
-    &:hover {
-      path,
-      circle {
-        fill: $background-color;
-      }
-    }
+.footer__social-link,
+.footer__social-link a {
+  @extend %sans-serif;
+  color: $pop-color;
 
-    @include respond-above(small) {
-      padding: 0;
-      padding-right: 1rem;
-    }
-  }
-
-  path,
-  circle {
-    fill: $pop-color;
-    transition: fill 0.2s ease;
+  &:hover {
+    color: $pop-color;
   }
 }
 
 .footer__sections {
+  background-color: $pop-color;
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
+  padding: 2rem;
+  text-algin: center;
 
-  @include respond-above(large) {
-    flex-basis: 50%;
-  }
-
-  @include respond-above(huge) {
-    flex-basis: calc(100% / 6 * 4);
+  @include respond-above(small) {
+    text-align: left;
   }
 }
 
 .footer__section-container {
   flex-basis: 100%;
+  box-sizing: border-box;
 
   @include respond-above(small) {
     flex-basis: 50%;
   }
 
+  @include respond-above(medium) {
+    flex-basis: 33%;
+    padding-right: 1rem;
+  }
+
+  @include respond-above(large) {
+    flex-basis: 20%;
+  }
+
   @include respond-above(huge) {
-    flex-basis: 25%;
     padding-right: 4rem;
-    box-sizing: border-box;
   }
 }
 
 .footer__title {
-  color: $background-color;
+  color: $text-color;
   @extend %sans-serif;
-  @include text-size($sans-s);
   font-weight: bold;
   margin-top: 2rem;
+  text-transform: uppercase;
 }
 
 .footer__pages {
@@ -144,13 +195,15 @@
 
 .footer__subtitle {
   @extend %sans-serif;
-  @include text-size($sans-s);
   font-weight: bold;
   margin-top: 0.5rem;
-  margin-right: 1rem;
+
+  @include respond-above(small) {
+    margin-right: 1rem;
+  }
 
   a {
-    color: $pop-color;
+    color: $text-color;
     border-bottom: none;
 
     &:hover {
@@ -161,12 +214,35 @@
 
 .footer__external-links {
   flex-basis: 100%;
+  color: $pop-color;
+  order: 1;
 
   @include respond-above(large) {
     flex-basis: 25%;
+    order: 4;
   }
 
   @include respond-above(huge) {
     flex-basis: calc(100% / 6);
   }
+}
+
+.footer__external-links ul {
+  list-style: none;
+  padding-top: 0.5rem;
+}
+
+.footer__external-links .footer__title {
+  color: $pop-color;
+  text-transform: uppercase;
+
+  @include respond-above(large) {
+    margin-top: 0;
+  }
+}
+
+.footer__external-link,
+.footer__external-link a {
+  @extend %sans-serif;
+  color: $pop-color;
 }

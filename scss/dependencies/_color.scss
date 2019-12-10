@@ -6,3 +6,10 @@ $pop-color: #EDC92D;
 %object-multiply{
 	mix-blend-mode:multiply;
 }
+
+:root {
+  --text-color: #{ $text-color };
+  --text-color--light: #{ $text-color--light };
+  --background-color: #{ $background-color };
+  --pop-color: #{ $pop-color };
+}

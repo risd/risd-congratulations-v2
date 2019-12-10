@@ -1,26 +1,6 @@
-{% set footer = cms.footer %}
+{% set footer = cms.universalfooter %}
 
 <footer class="footer__container">
-  <div class="footer__contact">
-    <div class="footer__logo">{% include "templates/partials/icons/seal-simplified.html" %}</div>
-    <div class="footer__info">
-      <p>
-        {{ footer.address.street1 }}<br>
-        {% if footer.address.street2 %}
-          {{ footer.address.street2 }}<br>
-        {% endif %}
-        {{ footer.address.city }}, {{ footer.address.state }} {{ footer.address.zip }}<br>
-        {{ footer.address.country }}
-      </p>
-      <p><a href="mailto:{{ footer.email }}">{{ footer.email }}</a></p>
-      <p><a href="/contact/">additional contact information</a></p>
-      <div class="footer__social">
-        <a href="http://twitter.com/risd">{% include "templates/partials/icons/twitter.html" %}</a>
-        <a href="http://facebook.com/risd1877">{% include "templates/partials/icons/facebook.html" %}</a>
-        <a href="https://www.instagram.com/risd1877/">{% include "templates/partials/icons/instagram.html" %}</a>
-      </div>
-    </div>
-  </div>
   <div class="footer__sections">
     {# Phase 1 - Enrollment #}
     {% if cms.phases.current_phase === "Enrollment" %}
@@ -48,12 +28,56 @@
       {% endfor %}
     {% endif %}
   </div>
-  <div class="footer__external-links">
-    <p class="footer__title">{{ footer.external_websites_title }}</p>
-    <ul>
-      {% for website in footer.external_websites %}
-        <li class="footer__subtitle"><a href="{{ website.link_url }}">{{ website.link_text }}</a></li>
-      {% endfor %}
-    </ul>
+  <div class="footer__final">
+    <div class="footer__logo">
+      <a href="https://www.risd.edu/" target="_blank">
+      {% include "templates/partials/icons/seal-simplified.html" %}
+      {% include "templates/partials/icons/seal.html" %}
+      </a>
+    </div>
+    <div class="footer__contact">
+      <p>
+        Admissions Office<br>
+        {{ footer.address.street1 }}<br>
+        {% if footer.address.street2 %}
+          {{ footer.address.street2 }}<br>
+        {% endif %}
+        {{ footer.address.city }}, {{ footer.address.state }} {{ footer.address.zip }}<br>
+        {{ footer.address.country }}
+      </p>
+      <p>
+        <a href="tel:{{ footer.phone_number }}">{{ footer.phone_number }}</a><br>
+        <a href="mailto:{{ footer.email }}">{{ footer.email }}</a>
+      </p>
+    </div>
+
+    {% for link in footer.social_links %}
+      {% if loop.first %}
+        <div class="footer__social-links">
+          <ul>
+      {% endif %}
+            <li class="footer__social-link">
+              <a href="{{ link.url }}" target="_blank">
+                {{ link.text }}
+              </a>
+            </li>
+      {% if loop.last %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
+    
+    {% for website in footer.external_websites %}
+      {% if loop.first %}
+        <div class="footer__external-links">
+          <p class="footer__title">{{ footer.external_websites_title }}</p>
+          <ul>
+      {% endif %}
+            <li class="footer__external-link"><a href="{{ website.link_url }}">{{ website.link_text }}</a></li>
+      {% if loop.last %}
+          </ul>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
 </footer>

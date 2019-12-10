@@ -132,7 +132,7 @@ ol,
 ul {
   margin-bottom: 1rem;
   padding-left: 1em;
-
+  
   li {
     margin-bottom: 1em;
     @extend %serif;
@@ -146,11 +146,17 @@ ul {
       li {
         margin-bottom: 1rem;
       }
+      li:last-child {
+        margin-bottom: 0;
+      }
     }
     ul {
     }
     ol {
     }
+  }
+  li:last-child {
+    margin-bottom: 0;
   }
 }
 
