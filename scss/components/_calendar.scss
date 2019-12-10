@@ -1,0 +1,262 @@
+.calendar {
+  margin: 4rem 0;
+}
+
+.calendar__audience {
+  @extend %serif;
+  margin-right: 1rem;
+  // margin-bottom: 1rem;
+  padding: 0.3em 0.5em;
+  border: 1px solid $text-color;
+  color: $text-color;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  min-width: 0;
+  @include text-size($serif-m);
+  text-align: center;
+  font-style: italic;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include respond-above(small) {
+    width: auto;
+  };
+
+  &:hover {
+    // background-color: $pop-color;
+    // color: $text-color;
+    background-color: $text-color;
+    color: $background-color;
+  }
+
+  &.active {
+    // background-color: $pop-color;
+    background-color: $text-color;
+    color: $background-color;
+  }
+
+  &.initial {
+    min-width: 100%;
+    @include text-size($serif-l);
+    opacity: 0;
+    margin-bottom: 1rem;
+
+    &:first-child {
+      margin-top: 4rem;
+    }
+  }
+
+  &.initial--transition {
+    transition: font-size 0.2s ease;
+    opacity: 1;
+  }
+
+}
+
+.calendar__day-group {
+  @extend %serif;
+  margin-right: 1rem;
+  // margin-bottom: 1rem;
+  padding: 0.3em 0.5em;
+  border: 2px solid $pop-color;
+  color: $text-color;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  display: inline-block;
+  min-width: 0;
+  @include text-size($serif-m);
+  text-align: center;
+  font-style: italic;
+  width: 100%;
+  box-sizing: border-box;
+
+  @include respond-above(small) {
+    width: auto;
+  };
+
+  &:hover {
+    // background-color: $text-color;
+    // color: $background-color;
+    background-color: $pop-color;
+    color: $text-color;
+  }
+
+  &.active {
+    // background-color: $text-color;
+    // color: $background-color;
+    background-color: $pop-color;
+    color: $text-color;
+  }
+}
+
+.calendar__section-title {
+  @include text-size($sans-l);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  display: block;
+  color: $pop-color;
+  text-align: center;
+  margin-bottom: 3rem;
+  margin-top: 4rem;
+}
+
+.calendar__item {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $pop-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  &.hide {
+    display: none;
+  }
+
+  &.toggled {
+
+    .calendar__description {
+      display: block;
+    }
+
+    .calendar__toggle {
+      .arrow {
+        transform: rotate(270deg);
+      }
+    }
+  }
+}
+
+.calendar__item--no-event {
+  display: none;
+
+  &.show {
+    display: flex;
+  }
+}
+
+.calendar__dates {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  @include respond-above(small) {
+    flex-basis: 30%;
+    margin-bottom: 0;
+  };
+}
+
+.calendar__date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar__day {
+  @include text-size($date-numbers);
+  color: $pop-color;
+  display: flex;
+  align-items: center;
+  span {
+    font-weight: normal;
+    // @extend %serif;
+    // margin: -0.2em 0.05em 0 0.05em;
+  }
+}
+
+.calendar__month {
+  text-transform: uppercase;
+}
+
+.calendar__text {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  box-sizing: border-box;
+  flex-grow: 1;
+
+  @include respond-above(small) {
+    flex-basis: 70%;
+    padding-left: 1rem;
+  };
+}
+
+.calendar__title {
+  transition: all 0.2s ease;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  &[data-description-exists] {
+    &:hover {
+      color: $pop-color;
+      cursor: pointer;
+
+      .arrow {
+        path, polygon, circle {
+          fill: $pop-color;
+        }
+      }
+    }
+  }
+
+}
+
+.calendar__times {
+  @extend %serif;
+  text-transform: uppercase;
+}
+
+.calendar__toggle {
+  padding-left: 1rem;
+  .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+.calendar__description {
+  display: none;
+  flex-basis: 100%;
+  margin-top: 1rem;
+
+  p + p {
+    margin-top: 0.5rem;
+  }
+
+  h5 + p {
+    margin-top: 0.5rem;
+  }
+
+  h5 {
+    margin-top: 1.5rem;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.calendar__links {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.calendar__link {
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    border: 1px solid $pop-color;
+    padding: 0.3em 0.5em;
+  }
+}

@@ -1,0 +1,62 @@
+.button {
+  cursor: e-resize;
+
+  a {
+    @extend %sans-serif;
+    background-color: $text-color;
+    color: $pop-color;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: .5em .75em;
+    cursor: e-resize;
+  }
+
+  .arrow-geometry {
+    fill: $pop-color;
+  }
+
+  &:hover {
+    a {
+      color: $background-color;
+    }
+    .button__arrow {
+      padding-left: 0.5rem;
+    }
+    .arrow-geometry {
+      fill: $background-color;
+    }
+  }
+}
+
+.button__arrow {
+  transition: all 0.28s ease;
+  .arrow {
+    height: 0.6em;
+  }
+}
+
+.home-module__narrative {
+  .button a {
+    color: $pop-color;
+
+    &:hover {
+      color: $pop-color;
+    }
+  }
+  .arrow-geometry {
+    fill: $pop-color;
+  }
+}
+
+.home-module__list {
+  .button a {
+    color: $background-color;
+
+    &:hover {
+      color: $background-color;
+    } 
+  }
+  .arrow-geometry {
+    fill: $background-color;
+  }
+}

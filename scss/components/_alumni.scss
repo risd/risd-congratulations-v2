@@ -1,0 +1,135 @@
+.alumni {
+  margin-top: 4rem;
+}
+
+.alumni__person {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $pop-color;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &.toggled {
+
+    .alumni__description {
+      display: block;
+    }
+
+    .alumni__work {
+      display: block;
+    }
+
+    .alumni__links {
+      display: block;
+    }
+
+    .alumni__toggle {
+      .arrow {
+        transform: rotate(270deg);
+      }
+    }
+  }
+}
+
+.alumni__portrait {
+  overflow: hidden;
+  display: inline-block;
+  flex-basis: 100%;
+  line-height: 0;
+  margin-bottom: 1rem;
+  // cursor: zoom-in;
+
+  @include respond-above(medium) {
+    flex-basis: 40%;
+    margin-bottom: 0;
+  };
+
+  img {
+    width: 100%;
+  }
+}
+
+.alumni__text {
+  flex-basis: 100%;
+  padding-left: 0;
+  box-sizing: border-box;
+
+  @include respond-above(medium) {
+    flex-basis: 60%;
+    padding-left: 2rem;
+  };
+}
+
+.alumni__header {
+  cursor: pointer;
+  &:hover {
+    .alumni__name, .alumni__title {
+      color: $pop-color;
+    }
+    .arrow {
+      path, polygon, circle {
+        fill: $pop-color;
+      }
+    }
+  }
+}
+
+.alumni__name {
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  flex-basis: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.alumni__toggle {
+  padding-left: 1rem;
+  .arrow {
+    transform: rotate(90deg);
+  }
+}
+
+.alumni__title {
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+
+.alumni__description {
+  display: none;
+  margin-top: 1rem;
+}
+
+.alumni__links {
+  list-style: none;
+  padding-left: 0;
+  display: none;
+}
+
+.alumni__link {
+  a {
+    border: 1px solid $pop-color;
+    padding: 0.3em 0.5em;
+  }
+}
+
+.alumni__work {
+  margin: 1rem 0 0 0;
+  flex-basis: 100%;
+  display: none;
+}
+
+.alumni__work-image {
+
+}
+
+.alumni__work-caption {
+  @extend %serif;
+  @include text-size($serif-xs);
+  font-style: italic;
+}

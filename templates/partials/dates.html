@@ -2,20 +2,6 @@
 
 <div class="section__content--contained calendar__container">
 
-  {% if item.audience_filters === true %}
-    <div class="calendar__filter">
-    {% spaceless %}
-      {% for filterItem in cms.audience %}
-        {% set filterUrl = filterItem.name|lower|replace('\|','-','g')|replace(' ','-','g') %}
-        {% if filterItem.active === true %}
-          <a href="#{{ filterUrl }}" class="calendar__audience initial">{{ filterItem.name }}</a>
-        {% endif %}
-      {% endfor %}
-    {% endspaceless %}
-    </div>
-  {% endif %}
-
-
   {% for date in dates %}
 
     {% if date.start_date %}
@@ -28,13 +14,6 @@
     {% set date.colonPos = date.fullName.indexOf(':') + 1 %}
     {% set date.lastCharPos = date.fullName.length %}
     {% set date.editedName = date.fullName|slice(date.colonPos, date.lastCharPos) %}
-
-    {% set date.idList = [] %}
-    {% for audience in date.audiences %}
-      {% set audience.spaceless = audience.name|lower|replace('\|','-','g')|replace(' ','-','g') %}
-      {% set date.idList = date.idList.concat([audience.spaceless]) %}
-    {% endfor %}
-    {% set date.idListText = date.idList|join(' ') %}
 
     {% set date.groupName = date.universal__calendar_item_groups.name %}
 
@@ -51,16 +30,16 @@
     {% if dateGroupName != "More Info" %}
       {% for date in dateGroup %}
         {% if loop.first %}
-          <h2 class="calendar__section-title">
+          <h3 class="calendar__section-title">
             {% if title %}
               {{ title }}
             {% else %}
               {{ dateGroupName }}
             {% endif %}
-          </h2>
+          </h3>
         {% endif %}
 
-        <div class="calendar__item {{ date.idListText }}">
+        <div class="calendar__item">
           {% if date.end_date %}
             <div class="calendar__dates">
               <div class="calendar__date">

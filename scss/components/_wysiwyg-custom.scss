@@ -104,8 +104,12 @@ figure[data-type=quote] {
   }
 
   cite {
-    &:before {
-      content: "—";
-    }
   }
+}
+
+.required-symbol {
+  @extend %sans-serif;
+  @include text-size($required-symbol);
+  color: $pop-color;
+  font-weight: bold;
 }

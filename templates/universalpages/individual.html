@@ -76,6 +76,17 @@
   {% endif %}
 
 
+  {# Page Title ------------------------------------------------------------ #}
+
+  {% if !stories %}
+    <section class="section--full {{ item.descriptionClass }}">
+      <div class="section__content--contained page__title-wrapper">
+        <h2 class="page__title">{{ item.name }}</h2>
+      </div>
+    </section>
+  {% endif %}
+
+
   {# Page description ------------------------------------------------------------ #}
 
   {% if item.description %}
@@ -83,6 +94,15 @@
       <div class="section__content--contained page__description">{{ item.description|safe }}</div>
     </section>
   {% endif %}
+
+
+  {# Supporting Content ------------------------------------------------------------ #}
+
+  {% for content in item.supporting_content %}
+    {% include "templates/partials/supporting-content.html" with {
+      item: content
+    } only %}
+  {% endfor %}
 
 
   {# Stories ------------------------------------------------------------ #}
@@ -128,7 +148,6 @@
       {# For the daily schedules #}
       {% if item._id === '-KjxEaBwec6p_CtyF6TE' %}
         {% include "templates/partials/dates--alt2.html" with { dates: dates_1, title: item.universal__calendar_items_title_1 } %}
-      {# For only audience based schedules #}
       {% else %}
         {% include "templates/partials/dates.html" with { dates: dates_1, title: item.universal__calendar_items_title_1 } %}
       {% endif %}
@@ -139,9 +158,7 @@
     <section class="section--full calendar">
       {# For the daily schedules #}
       {% if item._id === '-KjxEaBwec6p_CtyF6TE' %}
-        {% include "templates/partials/dates--alt2.html" with { title: item.universal__calendar_items_title } %}
-      {# For only audience based schedules #}
-      {% else %}
+        {% include "templates/partials/dates--alt2.html" with { title: item.universal__calendar_items_title } %}      {% else %}
         {% include "templates/partials/dates.html" with { title: item.universal__calendar_items_title } %}
       {% endif %}
     </section>

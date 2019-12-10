@@ -1,0 +1,34 @@
+.not-found {
+  margin: 4rem auto;
+}
+
+.not-found__title {
+  text-align: center;
+}
+
+.not-found__emoji {
+  text-align: center;
+  display: block;
+  border-bottom: none;
+  margin: 2rem auto;
+
+  img {
+    transform: scale(0.9);
+    transition: transform 0.2s ease;
+  }
+
+  figcaption {
+    @extend %serif;
+    font-style: italic;
+  }
+}
+
+.not-found__emoji-link {
+  border-bottom: none;
+
+  &:hover {
+    img {
+      transform: scale(1);
+    }
+  }
+}

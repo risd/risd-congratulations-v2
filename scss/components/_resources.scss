@@ -1,0 +1,144 @@
+.resource {
+  margin: auto;
+  max-width: calc(90% + 1rem);
+  margin-bottom: 8rem;
+  margin-top: 4rem;
+}
+
+.resource__image {
+  line-height: 0;
+}
+
+.resource__sizer {
+	width: 50%;
+
+	@include respond-above(small) {
+		width: 50%;
+	};
+
+	@include respond-above(medium) {
+		width: calc(100% / 3);
+	};
+
+	@include respond-above(large) {
+		width: 25%;
+	};
+
+	@include respond-above(huge) {
+		width: calc(100% / 6);
+	};
+}
+
+.resource__image-container {
+	margin: 0;
+	padding: 0.5rem;
+	width: 50%;
+	cursor: zoom-in;
+  box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+	@include respond-above(small) {
+		width: 50%;
+	};
+
+	@include respond-above(medium) {
+		width: calc(100% / 3);
+	};
+
+	@include respond-above(large) {
+		width: 25%;
+	};
+
+	@include respond-above(huge) {
+		width: calc(100% / 6);
+	};
+
+  &.show {
+    opacity: 1;
+  }
+
+	img {
+		margin: 0;
+		width: 100%;
+    line-height: 0;
+	}
+
+}
+
+.resource__image--medium {
+	width: 50%;
+
+	@include respond-above(small) {
+		width: 50%;
+	};
+
+	@include respond-above(medium) {
+		width: calc(100% / 3 * 2);
+	};
+
+	@include respond-above(large) {
+		width: 50%;
+	};
+
+	@include respond-above(huge) {
+		width: calc(100% / 3);
+	};
+}
+
+
+.resource__image--magnified {
+	width: 100%;
+	cursor: zoom-out;
+
+	@include respond-above(small) {
+		width: 100%;
+	};
+
+	@include respond-above(medium) {
+		width: 100%;
+	};
+
+	@include respond-above(large) {
+		width: 75%;
+	};
+
+	@include respond-above(huge) {
+		width: calc(100% / 3 * 2);
+	};
+}
+
+.resource__image--large {
+	width: 100%;
+
+	@include respond-above(small) {
+		width: 100%;
+	};
+
+	@include respond-above(medium) {
+		width: 100%;
+	};
+
+	@include respond-above(large) {
+		width: 75%;
+	};
+
+	@include respond-above(huge) {
+		width: calc(100% / 3 * 2);
+	};
+}
+
+.resource__caption {
+  @include text-size($serif-s);
+  @extend %serif;
+  font-style: italic;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+
+  a {
+    background-color: $pop-color;
+    border-bottom: none;
+    padding: 0.3em 0.5em;
+    display: inline-block;
+  }
+}

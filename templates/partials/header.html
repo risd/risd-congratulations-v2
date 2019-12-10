@@ -8,112 +8,61 @@
   {% set sections = nav.phase_2__secondary_nav_items %}
 {% endif %}
 
-<header class="main-nav-container">
+{% set currentUrl = getCurrentUrl() %}
 
-{# Desktop Navigation --------------------------------------------- #}
+{% set navItems = [{
+  text: 'Home',
+  url: '/',
+  className: 'main-nav__home-link',
+}] %}
 
-  <nav class="desktop-nav">
+{% for section in sections %}
+  {% set activeSection = false %}
+  {% set subItems = [] %}
 
-  {% set currentUrl = getCurrentUrl() %}
-  {% set navItems = [] %}
-  {% set logoItem = {url: '/'} %}
-
-  {% for section in sections %}
-    {% set stringToDelete = section._type|size + 1 %}
-    {% set section.url = url(section) %}
-    {% set stringLength = section.url|size %}
-    {% set section.url = section.url|slice(stringToDelete, stringLength) %}
-
-    {% if loop.index0 == 0 %}
-      {% set navItems = navItems.concat([logoItem]) %}
-      {% set navItems = navItems.concat([section]) %}
-    {% else %}
-      {% set navItems = navItems.concat([section]) %}
+  {% for page in section.universal__pages %}
+    {% set pageUrl = url(page) %}
+    {% set pageClassName = 'main-nav__page-link' %}
+    {% if currentUrl === pageUrl %}
+      {% set pageClassName = pageClassName + ' main-nav__page--active' %}
+      {% set activeSection = true %}
     {% endif %}
+    {% set subItems = subItems.concat([{
+      text: page.name,
+      url: pageUrl,
+      className: pageClassName,
+    }]) %}
   {% endfor %}
-
-  {% for navItem in navItems %}
-    {% if currentUrl === '/' && navItem.url === '/' %}
-      {% set navItem.activeClass = 'active' %}
-    {% elseif currentUrl.indexOf(navItem.url) === 0 && navItem.url !== '/' %}
-      {% set navItem.activeClass = 'active' %}
-    {% else %}
-      {% set navItem.activeClass = '' %}
-    {% endif %}
-  {% endfor %}
-
-	{% for navItem in navItems  %}
-    {% if navItem.url === '/' %}
-      <ul class="desktop-nav__column">
-        <li class="desktop-nav__header"><a class="desktop-nav__header-link desktop-nav__logo {{ navItem.activeClass }}" href="/">{% include "templates/partials/icons/wordmark.html" %}</a></li>
-      </ul>
-    {% else %}
-      <ul class="desktop-nav__column">
-        <li class="desktop-nav__header {{ navItem.activeClass }}"><a class="desktop-nav__header-link {{ navItem.activeClass }}" {% if navItem.universal__pages %}data-subpages="true"{% endif %}>{{ navItem.name }}</a></li>
-        {% if navItem.universal__pages %}
-          {% for page in navItem.universal__pages %}
-            {% if loop.first %}
-              <ul class="desktop-nav__list">
-            {% endif %}
-                <li class="desktop-nav__item"><a class="desktop-nav__item-link" href="{{ url(page) }}">{{ page.name }}</a></li>
-            {% if loop.last %}
-              </ul>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      </ul>
-    {% endif %}
-	{% endfor %}
-  </nav>
-
-
-
-{# Mobile Navigation --------------------------------------------- #}
-
-  <nav class="mobile-nav">
-
-  {% set navItems = [] %}
-  {% set logoItem = {} %}
-  {% for section in sections %}
-    {% set section.url = url(section) %}
-    {% set navItems = navItems.concat([section]) %}
-  {% endfor %}
-
-  {% for navItem in navItems %}
-    {% if currentUrl === '/' && navItem.url === '/' %}
-      {% set navItem.activeClass = 'active' %}
-    {% elseif currentUrl.indexOf(navItem.url) === 0 && navItem.url !== '/' %}
-      {% set navItem.activeClass = 'active' %}
-    {% else %}
-      {% set navItem.activeClass = '' %}
-    {% endif %}
-  {% endfor %}
-
-  {% for navItem in navItems  %}
-  {% if loop.first %}
-    <ul class="mobile-nav__top">
-      <li class="mobile-nav__header"><a class="mobile-nav__logo" href="/">{% include "templates/partials/icons/wordmark.html" %}</a><span class="mobile-nav__toggle">Menu</span></li>
-    </ul>
-    <div class="mobile-nav__content">
+  
+  {% set sectionClassName = 'main-nav__section-heading' %}
+  {% if activeSection === true %}
+    {% set sectionClassName = sectionClassName + ' main-nav__section--active' %}
   {% endif %}
-      <ul class="mobile-nav__row">
-        <li class="mobile-nav__header"><a class="mobile-nav__header-link {{ navItem.activeClass }}">{{ navItem.name }}</a></li>
-        {% if navItem.universal__pages %}
-          {% for page in navItem.universal__pages  %}
-            {% if loop.first %}
-              <ul class="mobile-nav__list">
-            {% endif %}
-                <li class="mobile-nav__item"><a class="mobile-nav__item-link" href="{{ url(page) }}">{{ page.name }}</a></li>
-            {% if loop.last %}
-              </ul>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      </ul>
-  {% if loop.last %}
-    </div>
-  {% endif %}
-  {% endfor %}
-  </nav>
+  {% set navItems = navItems.concat([{
+    text: section.name,
+    className: sectionClassName,
+    subitems: subItems,
+  }]) %}
+{% endfor %}
 
-</header>
+{% set usefulLinks = [] %}
+{% for usefulLink in nav.useful_links %}
+  {% set usefulLink.className = 'main-nav__useful-link' %}
+  {% set usefulLinks = usefulLinks.concat([usefulLink]) %}
+{% endfor %}
+
+{% if usefulLinks|size > 0 %}
+  {% set usefulLinksItem = {
+    text: nav.useful_links_text,
+    className: 'main-nav__useful-links-heading',
+    subitems: usefulLinks,
+  } %}
+  {% set navItems = navItems.concat([usefulLinksItem]) %}
+{% endif %}
+
+{% react "Nav" with {
+  siteTitle: "",
+  homepageUrl: "/",
+  hasSearch: false,
+  items: navItems
+} %}

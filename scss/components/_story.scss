@@ -1,0 +1,394 @@
+.story {
+  width: 100%;
+  margin-bottom: 4rem;
+  @include respond-above(large) {
+    margin-bottom: 8rem;
+  }
+}
+
+.story__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  margin: auto;
+
+  @include respond-above(medium) {
+    width: 70%;
+    height: 75vh;
+  }
+
+  @at-root .page__hero:first-child + .story & {
+    @include respond-above(medium) {
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+
+.story__title {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  padding-bottom: 1rem;
+  padding-top: 4rem;
+  color: $pop-color;
+  letter-spacing: 0;
+
+  @include respond-above(small) {
+    width: 80%;
+  }
+
+  @include respond-above(medium) {
+    width: 70%;
+  }
+
+  @at-root .page__hero:first-child + .story & {
+    @include respond-above(medium) {
+      padding: 0;
+    }
+  }
+}
+
+.story__title--shadow {
+  text-shadow: none;
+
+  @include respond-above(medium) {
+    text-shadow: black 0 0 20px;
+  }
+}
+
+.story__subtitle {
+  margin: auto;
+  width: 90%;
+  text-align: center;
+  padding-bottom: 4rem;
+  font-weight: normal;
+  @extend %serif;
+  // text-transform: uppercase;
+  // letter-spacing: 0.02em;
+  font-style: italic;
+  @include respond-above(small) {
+    width: 80%;
+  }
+}
+
+.story__text {
+  margin: auto;
+  width: 90%;
+  margin-top: 2rem;
+
+  p {
+    @include text-size($serif-m);
+    margin: auto;
+    margin-bottom: 1rem;
+    // max-width: 40em;
+    @include respond-above(small) {
+      width: 100%;
+    }
+    @include respond-above(medium) {
+      width: 70%;
+    }
+    @include respond-above(large) {
+      width: 50%;
+    }
+    @include respond-above(huge) {
+      width: 40%;
+    }
+
+    a {
+      @extend %inline-link;
+    }
+  }
+
+  code {
+    @extend %sans-serif;
+    @include text-size($sans-xs);
+    @extend %small-caps;
+    font-weight: bold;
+    background-color: $pop-color;
+    // border: 1px solid $pop-color;
+    padding: 0.4em 0.5em 0.3em 0.6em;
+    // font-variant: small-caps;
+    // font-feature-settings: "c2sc", "smcp";
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  figure[data-type="image"] {
+    margin: 3em auto 0 auto;
+
+    @include respond-above(medium) {
+      max-width: 75%;
+    }
+
+    a {
+      border-bottom: none;
+    }
+
+    figcaption {
+      margin-bottom: 2em;
+      padding: 0.5em 0em;
+      a {
+        display: inline-block;
+        border-bottom: 1px solid $pop-color;
+      }
+    }
+  }
+
+  figure[data-type="quote"] {
+    @include text-size($sans-l);
+    @extend %antialiased;
+    @extend %serif;
+    clear: both;
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid $pop-color;
+    border-bottom: 1px solid $pop-color;
+    text-align: left;
+    float: none;
+    margin-right: 0rem;
+    width: 100%;
+    text-shadow: 0.5px 0.5px 2px rgba(255, 255, 255, 0.5);
+
+    @include respond-above(medium) {
+      float: left;
+      width: 70%;
+      margin-left: 15%;
+      margin-right: 1rem;
+    }
+    @include respond-above(large) {
+      width: 60%;
+      margin-right: 1rem;
+      margin-left: 20%;
+    }
+    @include respond-above(huge) {
+      width: 40%;
+    }
+
+    &.wy-figure-large {
+      width: 100%;
+      @include text-size($sans-xl);
+      @include respond-above(medium) {
+        width: 40%;
+      }
+      @include respond-above(large) {
+        width: 30%;
+        margin-left: 20%;
+      }
+      @include respond-above(huge) {
+        width: 30%;
+        margin-left: 20%;
+      }
+    }
+
+    &.wy-figure-medium {
+      width: 100%;
+      @include text-size($sans-l);
+      @include respond-above(medium) {
+        width: 70%;
+      }
+      @include respond-above(large) {
+        width: 60%;
+        margin-left: 20%;
+      }
+      @include respond-above(huge) {
+        width: 50%;
+        margin-left: 20%;
+      }
+    }
+
+    &.wy-figure-small {
+      width: 100%;
+      @include text-size($sans-l);
+      @include respond-above(medium) {
+        width: 40%;
+      }
+      @include respond-above(large) {
+        width: 30%;
+        margin-left: 20%;
+      }
+      @include respond-above(huge) {
+        width: 30%;
+        margin-left: 20%;
+      }
+    }
+
+    &.wy-figure-right {
+      float: none;
+      margin-left: 0rem;
+      @include respond-above(medium) {
+        float: right;
+        margin-left: 1rem;
+        margin-right: 15%;
+      }
+      @include respond-above(large) {
+        margin-right: 20%;
+      }
+      @include respond-above(huge) {
+        margin-right: 20%;
+      }
+
+      blockquote {
+      }
+    }
+
+    &.wy-figure-left {
+      float: none;
+      margin-right: 0rem;
+      @include respond-above(medium) {
+        float: left;
+        margin-right: 1rem;
+        margin-left: 15%;
+      }
+      @include respond-above(large) {
+        margin-left: 20%;
+      }
+      @include respond-above(huge) {
+        margin-left: 20%;
+      }
+    }
+
+    blockquote {
+    }
+
+    cite {
+      @include text-size($serif-xs);
+      @extend %sans-serif;
+      @extend %small-caps;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      display: block;
+      color: $text-color;
+
+      &:before {
+        // content: "—";
+      }
+    }
+  }
+
+  /*
+  figure[data-type=video] {
+    display: block;
+    clear: both;
+    float: left;
+    margin-bottom: 1.5rem;
+    margin-right: 1.5rem;
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-bottom: 56.25%;
+
+    @include respond-above(medium) {
+      width: 75%;
+    }
+
+    figcaption {
+      @include text-size($serif-xs);
+    }
+
+    p {
+      @include text-size($sans-s);
+      width: 100%;
+      max-width: 100%;
+    }
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.wy-figure-right {
+      float: none;
+      margin-left: 0rem;
+      @include respond-above(medium) {
+        float: right;
+        margin-left: 1.5rem;
+      }
+    }
+
+    &.wy-figure-left {
+      float: none;
+      margin-right: 0rem;
+      @include respond-above(medium) {
+        float: left;
+        margin-right: 1.5rem;
+      }
+    }
+
+    &.wy-figure-full {
+      width: 100%;
+      p {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      iframe {
+        width: 100%;
+      }
+    }
+  }
+
+  figure[data-type=image] {
+    display: block;
+    height: auto;
+    clear: both;
+    float: left;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+
+    &.wy-figure-right {
+      float: none;
+      margin-left: 0rem;
+      @include respond-above(medium) {
+        float: right;
+        margin-left: 1.5rem;
+      }
+    }
+
+    &.wy-figure-left {
+      float: none;
+      margin-right: 0rem;
+      @include respond-above(medium) {
+        float: left;
+        margin-right: 1.5rem;
+      }
+    }
+
+    &.wy-figure-large {
+      width: 100%;
+    }
+
+    &.wy-figure-medium {
+      width: 100%;
+      @include respond-above(medium) {
+        width: 75%;
+      }
+    }
+
+    &.wy-figure-small {
+      width: 100%;
+      @include respond-above(medium) {
+        width: 25%;
+      }
+    }
+
+    figcaption {
+      @include text-size($serif-xs);
+    }
+
+    a {
+      cursor: zoom-in;
+    }
+  }
+*/
+}

@@ -1,0 +1,109 @@
+:root {
+  --text-color: #000000;
+  --text-color--light: #ababab;
+  --background-color: white;
+  --pop-color: #EDC92D; }
+
+@font-face {
+  font-family: "Modern Pictograms";
+  font-weight: 100;
+  src: url("../fonts/modernpictogramspro_234.eot"), url("../fonts/modernpictogramspro_234.ttf"), url("../fonts/modernpictogramspro_234.woff"); }
+
+.required-symbol {
+  font-family: "Gotham SSm A", "Gotham SSm B", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+
+/* --------------------------------------------------------
+
+Remove the unit of a length
+@param {Number} $number - Number to remove unit from
+@return {Number} - Unitless number
+
+-------------------------------------------------------- */
+/* --------------------------------------------------------
+
+Variable Map Lists for the text-size mixin
+
+A specific text-size in this mixin is defined with a font-size and a leading.
+
+For example,
+  small: (64px, 72px)
+  where small is the media query width defined in the $breakpoints map-list in _responsive.scss,
+  64px is the font-size
+  72px is the line-height (which will be converted to a unitless value for the browser in the mixin)
+
+
+The definition of each font-size/leading pair can be different for each media query width.
+This is an example of a font size with different definitions for each media query width:
+  $medium: (
+    base: (12px, 18px),
+    small: (14px, 20px),
+    medium: (16px, 24px),
+    large: (18px, 28px),
+    huge: (20px, 32px)
+  ) ;
+This is generally an unusual situation because it would involve a pretty complicated typography system.
+
+
+A more common example would be something like this:
+  $xlarge: (
+    base: (52px, 60px),
+    small: (64px, 72px),
+    medium: (64px, 72px),
+    large: (72px, 80px),
+    huge: (72px, 80px)
+  ) ;
+
+This definition includes redundant repitition of values, so it can be defined more simply like this:
+  $xlarge: (
+    base: (52px, 60px),
+    small: (64px, 72px),
+    large: (72px, 80px)
+  ) ;
+
+-------------------------------------------------------- */
+/* --------------------------------------------------------
+Mixin for font-size and line-height definition
+  Usage Example: @include text-size(large);
+
+Font size can take on the following values:
+  small, regular, medium, large, xlarge, xxlarge
+
+If the mixin is called and values are not entered, it will default to regular font-size
+-------------------------------------------------------- */
+.required-symbol {
+  color: #EDC92D;
+  font-weight: bold; }
+  @media screen and (min-width: 1px) {
+    .required-symbol {
+      font-size: 11px;
+      line-height: calc(11 / 11); } }
+
+body {
+  text-rendering: optimizeLegibility; }
+  body a {
+    display: inline; }
+
+.wh-logo {
+  background-image: url("../images/logo.svg");
+  background-color: red;
+  border: 10px solid red;
+  width: 255px;
+  height: 100px;
+  border-radius: 0;
+  background-size: 245px 160px; }
+
+.wh-login {
+  background: red !important; }
+
+.wy-control .big-name {
+  text-rendering: optimizeLegibility; }
+
+.redactor-editor {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .redactor-editor figure[data-type=quote] {
+    border-left: none; }
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNtcy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxzQkFBc0I7RUFDdEIsNkJBQTZCO0VBQzdCLDBCQUEwQjtFQUMxQixxQkFBcUIsRUFBRTs7QUFFekI7RUFDRSxpQ0FBaUM7RUFDakMsaUJBQWlCO0VBQ2pCLDRJQUE0SSxFQUFFOztBQUVoSjtFQUNFLGdHQUFnRyxFQUFFOztBQUVwRzs7Ozs7OzJEQU0yRDtBQUMzRDs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7MkRBeUMyRDtBQUMzRDs7Ozs7Ozs7MkRBUTJEO0FBQzNEO0VBQ0UsZUFBZTtFQUNmLGtCQUFrQixFQUFFO0VBQ3BCO0lBQ0U7TUFDRSxnQkFBZ0I7TUFDaEIsMkJBQTJCLEVBQUUsRUFBRTs7QUFFckM7RUFDRSxtQ0FBbUMsRUFBRTtFQUNyQztJQUNFLGdCQUFnQixFQUFFOztBQUV0QjtFQUNFLDRDQUE0QztFQUM1QyxzQkFBc0I7RUFDdEIsdUJBQXVCO0VBQ3ZCLGFBQWE7RUFDYixjQUFjO0VBQ2QsaUJBQWlCO0VBQ2pCLDZCQUE2QixFQUFFOztBQUVqQztFQUNFLDJCQUEyQixFQUFFOztBQUUvQjtFQUNFLG1DQUFtQyxFQUFFOztBQUV2QztFQUNFLHFCQUFjO0VBQWQsY0FBYztFQUNkLG9CQUFnQjtNQUFoQixnQkFBZ0IsRUFBRTtFQUNsQjtJQUNFLGtCQUFrQixFQUFFIiwiZmlsZSI6ImNtcy5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6cm9vdCB7XG4gIC0tdGV4dC1jb2xvcjogIzAwMDAwMDtcbiAgLS10ZXh0LWNvbG9yLS1saWdodDogI2FiYWJhYjtcbiAgLS1iYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgLS1wb3AtY29sb3I6ICNFREM5MkQ7IH1cblxuQGZvbnQtZmFjZSB7XG4gIGZvbnQtZmFtaWx5OiBcIk1vZGVybiBQaWN0b2dyYW1zXCI7XG4gIGZvbnQtd2VpZ2h0OiAxMDA7XG4gIHNyYzogdXJsKFwiLi4vZm9udHMvbW9kZXJucGljdG9ncmFtc3Byb18yMzQuZW90XCIpLCB1cmwoXCIuLi9mb250cy9tb2Rlcm5waWN0b2dyYW1zcHJvXzIzNC50dGZcIiksIHVybChcIi4uL2ZvbnRzL21vZGVybnBpY3RvZ3JhbXNwcm9fMjM0LndvZmZcIik7IH1cblxuLnJlcXVpcmVkLXN5bWJvbCB7XG4gIGZvbnQtZmFtaWx5OiBcIkdvdGhhbSBTU20gQVwiLCBcIkdvdGhhbSBTU20gQlwiLCBcIkhlbHZldGljYSBOZXVlXCIsIFwiSGVsdmV0aWNhXCIsIFwiQXJpYWxcIiwgc2Fucy1zZXJpZjsgfVxuXG4vKiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG5SZW1vdmUgdGhlIHVuaXQgb2YgYSBsZW5ndGhcbkBwYXJhbSB7TnVtYmVyfSAkbnVtYmVyIC0gTnVtYmVyIHRvIHJlbW92ZSB1bml0IGZyb21cbkByZXR1cm4ge051bWJlcn0gLSBVbml0bGVzcyBudW1iZXJcblxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi9cbi8qIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5cblZhcmlhYmxlIE1hcCBMaXN0cyBmb3IgdGhlIHRleHQtc2l6ZSBtaXhpblxuXG5BIHNwZWNpZmljIHRleHQtc2l6ZSBpbiB0aGlzIG1peGluIGlzIGRlZmluZWQgd2l0aCBhIGZvbnQtc2l6ZSBhbmQgYSBsZWFkaW5nLlxuXG5Gb3IgZXhhbXBsZSxcbiAgc21hbGw6ICg2NHB4LCA3MnB4KVxuICB3aGVyZSBzbWFsbCBpcyB0aGUgbWVkaWEgcXVlcnkgd2lkdGggZGVmaW5lZCBpbiB0aGUgJGJyZWFrcG9pbnRzIG1hcC1saXN0IGluIF9yZXNwb25zaXZlLnNjc3MsXG4gIDY0cHggaXMgdGhlIGZvbnQtc2l6ZVxuICA3MnB4IGlzIHRoZSBsaW5lLWhlaWdodCAod2hpY2ggd2lsbCBiZSBjb252ZXJ0ZWQgdG8gYSB1bml0bGVzcyB2YWx1ZSBmb3IgdGhlIGJyb3dzZXIgaW4gdGhlIG1peGluKVxuXG5cblRoZSBkZWZpbml0aW9uIG9mIGVhY2ggZm9udC1zaXplL2xlYWRpbmcgcGFpciBjYW4gYmUgZGlmZmVyZW50IGZvciBlYWNoIG1lZGlhIHF1ZXJ5IHdpZHRoLlxuVGhpcyBpcyBhbiBleGFtcGxlIG9mIGEgZm9udCBzaXplIHdpdGggZGlmZmVyZW50IGRlZmluaXRpb25zIGZvciBlYWNoIG1lZGlhIHF1ZXJ5IHdpZHRoOlxuICAkbWVkaXVtOiAoXG4gICAgYmFzZTogKDEycHgsIDE4cHgpLFxuICAgIHNtYWxsOiAoMTRweCwgMjBweCksXG4gICAgbWVkaXVtOiAoMTZweCwgMjRweCksXG4gICAgbGFyZ2U6ICgxOHB4LCAyOHB4KSxcbiAgICBodWdlOiAoMjBweCwgMzJweClcbiAgKSA7XG5UaGlzIGlzIGdlbmVyYWxseSBhbiB1bnVzdWFsIHNpdHVhdGlvbiBiZWNhdXNlIGl0IHdvdWxkIGludm9sdmUgYSBwcmV0dHkgY29tcGxpY2F0ZWQgdHlwb2dyYXBoeSBzeXN0ZW0uXG5cblxuQSBtb3JlIGNvbW1vbiBleGFtcGxlIHdvdWxkIGJlIHNvbWV0aGluZyBsaWtlIHRoaXM6XG4gICR4bGFyZ2U6IChcbiAgICBiYXNlOiAoNTJweCwgNjBweCksXG4gICAgc21hbGw6ICg2NHB4LCA3MnB4KSxcbiAgICBtZWRpdW06ICg2NHB4LCA3MnB4KSxcbiAgICBsYXJnZTogKDcycHgsIDgwcHgpLFxuICAgIGh1Z2U6ICg3MnB4LCA4MHB4KVxuICApIDtcblxuVGhpcyBkZWZpbml0aW9uIGluY2x1ZGVzIHJlZHVuZGFudCByZXBpdGl0aW9uIG9mIHZhbHVlcywgc28gaXQgY2FuIGJlIGRlZmluZWQgbW9yZSBzaW1wbHkgbGlrZSB0aGlzOlxuICAkeGxhcmdlOiAoXG4gICAgYmFzZTogKDUycHgsIDYwcHgpLFxuICAgIHNtYWxsOiAoNjRweCwgNzJweCksXG4gICAgbGFyZ2U6ICg3MnB4LCA4MHB4KVxuICApIDtcblxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi9cbi8qIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5NaXhpbiBmb3IgZm9udC1zaXplIGFuZCBsaW5lLWhlaWdodCBkZWZpbml0aW9uXG4gIFVzYWdlIEV4YW1wbGU6IEBpbmNsdWRlIHRleHQtc2l6ZShsYXJnZSk7XG5cbkZvbnQgc2l6ZSBjYW4gdGFrZSBvbiB0aGUgZm9sbG93aW5nIHZhbHVlczpcbiAgc21hbGwsIHJlZ3VsYXIsIG1lZGl1bSwgbGFyZ2UsIHhsYXJnZSwgeHhsYXJnZVxuXG5JZiB0aGUgbWl4aW4gaXMgY2FsbGVkIGFuZCB2YWx1ZXMgYXJlIG5vdCBlbnRlcmVkLCBpdCB3aWxsIGRlZmF1bHQgdG8gcmVndWxhciBmb250LXNpemVcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICovXG4ucmVxdWlyZWQtc3ltYm9sIHtcbiAgY29sb3I6ICNFREM5MkQ7XG4gIGZvbnQtd2VpZ2h0OiBib2xkOyB9XG4gIEBtZWRpYSBzY3JlZW4gYW5kIChtaW4td2lkdGg6IDFweCkge1xuICAgIC5yZXF1aXJlZC1zeW1ib2wge1xuICAgICAgZm9udC1zaXplOiAxMXB4O1xuICAgICAgbGluZS1oZWlnaHQ6IGNhbGMoMTEgLyAxMSk7IH0gfVxuXG5ib2R5IHtcbiAgdGV4dC1yZW5kZXJpbmc6IG9wdGltaXplTGVnaWJpbGl0eTsgfVxuICBib2R5IGEge1xuICAgIGRpc3BsYXk6IGlubGluZTsgfVxuXG4ud2gtbG9nbyB7XG4gIGJhY2tncm91bmQtaW1hZ2U6IHVybChcIi4uL2ltYWdlcy9sb2dvLnN2Z1wiKTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xuICBib3JkZXI6IDEwcHggc29saWQgcmVkO1xuICB3aWR0aDogMjU1cHg7XG4gIGhlaWdodDogMTAwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDA7XG4gIGJhY2tncm91bmQtc2l6ZTogMjQ1cHggMTYwcHg7IH1cblxuLndoLWxvZ2luIHtcbiAgYmFja2dyb3VuZDogcmVkICFpbXBvcnRhbnQ7IH1cblxuLnd5LWNvbnRyb2wgLmJpZy1uYW1lIHtcbiAgdGV4dC1yZW5kZXJpbmc6IG9wdGltaXplTGVnaWJpbGl0eTsgfVxuXG4ucmVkYWN0b3ItZWRpdG9yIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC13cmFwOiB3cmFwOyB9XG4gIC5yZWRhY3Rvci1lZGl0b3IgZmlndXJlW2RhdGEtdHlwZT1xdW90ZV0ge1xuICAgIGJvcmRlci1sZWZ0OiBub25lOyB9XG4iXX0= */
