@@ -117,6 +117,11 @@
   }
 }
 
+.home-module--third {
+  flex-basis: 33%;
+  flex-grow: 1;
+}
+
 
 // Button
 
@@ -135,32 +140,56 @@
   }
 }
 
-.home-module__button--green {
-  background-color: $pop-color;
+.home-module__button--white {
+  background-color: var(--button-white);
   a {
     &:hover {
-      color: $background-color;
+      color: var(--button-dark);
 
       path, circle {
-        fill: $background-color;
+        fill: var(--button-dark);
       }
     }
   }
-
 }
 
-.home-module__button--white {
-  background-color: $background-color;
+.home-module__button--light {
+  background-color: var(--button-light);
   a {
     &:hover {
-      color: $pop-color;
+      color: var(--button-dark);
 
       path, circle {
-        fill: $pop-color;
+        fill: var(--button-dark);
       }
     }
   }
+}
 
+.home-module__button--medium {
+  background-color: var(--button-medium);
+  a {
+    &:hover {
+      color: var(--button-white);
+
+      path, circle {
+        fill: var(--button-white);
+      }
+    }
+  }
+}
+
+.home-module__button--dark {
+  background-color: var(--button-dark);
+  a {
+    &:hover {
+      color: var(--button-white);
+
+      path, circle {
+        fill: var(--button-white);
+      }
+    }
+  }
 }
 
 .home-module__button-toggle {

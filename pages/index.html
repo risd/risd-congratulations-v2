@@ -36,6 +36,8 @@
         {% set imageDimension = 1200 %}
       {% elseif module.size === "Half" %}
         {% set imageDimension = 600 %}
+      {% elseif module.size === "Third" %}
+        {% set imageDimension = 400 %}
       {% endif %}
       <div class="home-module home-module--{{ sizeClass }}">
 
