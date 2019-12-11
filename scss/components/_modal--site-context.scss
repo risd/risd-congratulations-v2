@@ -136,3 +136,20 @@ body.modal--showing .modal {
   display: inline-block;
   margin-top: 1.6rem;
 }
+
+.modal__help {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+
+  @include respond-above(large) {
+    margin-top: -3.5rem;
+  }
+}
+
+.modal__help p {
+  @extend %sans-serif;
+  @include text-size($sans-m2);
+  color: var(--background-color);
+}
