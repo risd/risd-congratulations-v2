@@ -102,19 +102,14 @@
     {% endfor %}
 
       {# Contact #}
+      {% if home.contact_link_text and home.contact_link_url %}
       <div class="home-module home-module--full">
         <div class="home-module__contact">
-          <div class="home-module__contact-social">
-            <a href="http://twitter.com/risd">{% include "templates/partials/icons/twitter.html" %}</a>
-            <a href="http://facebook.com/risd1877">{% include "templates/partials/icons/facebook.html" %}</a>
-            <a href="https://www.instagram.com/risd1877/">{% include "templates/partials/icons/instagram.html" %}</a>
-          </div>
-          <div class="home-module__contact-hashtag">{{ home.contact_hastag }}</div>
-          {% if home.contact_link_text and home.contact_link_url %}
-            <p class="home-module__contact-link button"><a href="{{ home.contact_link_url }}">{{ home.contact_link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></p>
-          {% endif %}
+          <p class="home-module__contact-link button"><a href="{{ home.contact_link_url }}">{{ home.contact_link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></p>
+          
         </div>
       </div>
+      {% endif %}
 
     </section>
 
