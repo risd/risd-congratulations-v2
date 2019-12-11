@@ -4,6 +4,8 @@
 
 {% block content %}
 
+  {% include "templates/partials/modal--site-context.html" %}
+
   {# Phase 1 - Enrollment #}
   {% if cms.phases.current_phase === "Enrollment" %}
     {% set home = cms.phase1home %}

@@ -9,7 +9,7 @@
 }
 
 %serif {
-  font-family: "Mercury Text G1 A", "Mercury Text G1 B", "Georgia", "Times New Roman", "Times", serif;
+  font-family: "Mercury SSm A", "Mercury SSm B", "Georgia", "Times New Roman", "Times", serif;
 }
 
 
@@ -170,6 +170,14 @@ $date-numbers:(
 
 $required-symbol:(
   base: (11px, 11px)
+);
+
+$modal-heading: (
+  base: (38px, 38px)
+);
+
+$modal-description: (
+  base: (18px, 22px)
 );
 
 
