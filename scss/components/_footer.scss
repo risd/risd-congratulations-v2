@@ -50,11 +50,6 @@
   @include respond-above(large) {
     flex-basis: 25%;
   }
-
-  @include respond-above(huge) {
-    flex-basis: calc(100% / 6);
-    padding: 2rem 4rem 2rem 0;
-  }
 }
 
 .footer__logo {
@@ -175,10 +170,6 @@
   @include respond-above(large) {
     flex-basis: 20%;
   }
-
-  @include respond-above(huge) {
-    padding-right: 4rem;
-  }
 }
 
 .footer__title {
@@ -220,10 +211,6 @@
   @include respond-above(large) {
     flex-basis: 25%;
     order: 4;
-  }
-
-  @include respond-above(huge) {
-    flex-basis: calc(100% / 6);
   }
 }
 
