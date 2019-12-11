@@ -52,7 +52,7 @@
 }
 
 .main-nav__home-link {
-  text-transform: uppercase;
+  // text-transform: uppercase;
 }
 
 .main-nav__home-link a {
@@ -62,6 +62,12 @@
 .main-nav__section-heading {
   position: relative;
   cursor: pointer;
+}
+
+.main-nav__section-heading span span {
+  text-transform: none;
+  width: 86%;
+  display: inline-block;
 }
 
 .main-nav__section-heading {
