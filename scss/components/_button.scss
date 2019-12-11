@@ -8,7 +8,9 @@
     text-transform: uppercase;
     font-weight: bold;
     padding: .5em .75em;
+    letter-spacing: 0.05em;
     cursor: e-resize;
+    border-bottom: 0;
   }
 
   .arrow-geometry {
@@ -17,13 +19,17 @@
 
   &:hover {
     a {
-      color: $background-color;
+      color: $pop-color;
     }
     .button__arrow {
       padding-left: 0.5rem;
     }
+    .button--left.button__arrow {
+      padding-right: 0.5rem;
+      padding-left: 0rem;
+    }
     .arrow-geometry {
-      fill: $background-color;
+      fill: $pop-color;
     }
   }
 }
@@ -35,9 +41,14 @@
   }
 }
 
+.button--left svg {
+  transform: rotate(180deg) translate(0px, 1px);
+}
+
 .home-module__narrative {
   .button a {
     color: $pop-color;
+    border-bottom: 0;
 
     &:hover {
       color: $pop-color;
@@ -51,10 +62,28 @@
 .home-module__list {
   .button a {
     color: $background-color;
+    border-bottom: 0;
 
     &:hover {
       color: $background-color;
     } 
+  }
+  .arrow-geometry {
+    fill: $background-color;
+  }
+}
+
+.modal__button {
+  a { 
+    color: $background-color;
+    border-bottom: 0; 
+  
+    &:hover {
+      color: $background-color;
+      .arrow-geometry {
+        fill: $background-color;
+      }
+    }
   }
   .arrow-geometry {
     fill: $background-color;
