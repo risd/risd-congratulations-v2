@@ -83,7 +83,7 @@
     @include text-size($serif-m);
     margin: auto;
     margin-bottom: 1rem;
-    // max-width: 40em;
+    // max-width: 35em;
     @include respond-above(small) {
       width: 100%;
     }
