@@ -63,7 +63,7 @@ body.modal--showing .modal {
 }
 
 .modal__star--left .modal__content {
-  top: 230px;
+  top: 210px;
   left: 210px;
 }
 
@@ -72,7 +72,7 @@ body.modal--showing .modal {
 }
 
 .modal__star--right .modal__content {
-  top: 156px;
+  top: 136px;
   left: 160px;
 }
 
@@ -102,6 +102,10 @@ body.modal--showing .modal {
   width: 50%;
 }
 
+.modal__content--desktop .modal__content {
+  width: 53%;
+}
+
 .modal__line-item {
 }
 
@@ -112,7 +116,7 @@ body.modal--showing .modal {
 }
 
 .modal__line-item-text {
-  padding-left: 2.1rem;
+  padding-left: 1.8rem;
 }
 
 .modal__arrow {
