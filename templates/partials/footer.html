@@ -37,7 +37,6 @@
     </div>
     <div class="footer__contact">
       <p>
-        Admissions Office<br>
         {{ footer.address.street1 }}<br>
         {% if footer.address.street2 %}
           {{ footer.address.street2 }}<br>
@@ -45,10 +44,16 @@
         {{ footer.address.city }}, {{ footer.address.state }} {{ footer.address.zip }}<br>
         {{ footer.address.country }}
       </p>
-      <p>
-        <a href="tel:{{ footer.phone_number }}">{{ footer.phone_number }}</a><br>
+      {% if footer.email %}
+      <p class="footer__contact-email">
         <a href="mailto:{{ footer.email }}">{{ footer.email }}</a>
       </p>
+      {% endif %}
+      {% if footer.phone_number %}
+      <p class="footer__phone-number">
+        <a href="tel:{{ footer.phone_number }}">{{ footer.phone_number }}</a><br>
+      </p>
+      {% endif %}
     </div>
 
     {% for link in footer.social_links %}

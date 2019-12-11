@@ -128,11 +128,16 @@ $sans-m:(
   medium:(24px, 28px)
 );
 
+$sans-m2:(
+  base:(14px, 14px),
+  medium:(18px, 18px)
+);
+
 
 $serif-m:(
-  base:(16px, 23px),
-  small:(16px, 23px),
-  medium:(16px, 23px)
+  base:(20px, 28px),
+  small:(20px, 28px),
+  medium:(20px, 28px)
 );
 
 // Large
@@ -169,7 +174,7 @@ $date-numbers:(
 );
 
 $required-symbol:(
-  base: (11px, 11px)
+  base: (15px, 15px)
 );
 
 $modal-heading: (
