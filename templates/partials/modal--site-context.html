@@ -19,7 +19,7 @@
       // show if forced
       if ( force === true ) {
         document.body.classList.add(showingClassName)
-        return; 
+        return;
       }
       // do not show if previously dismissed
       if ( dismissed === "true" ) return;
@@ -30,7 +30,7 @@
 
     function dismiss () {
       document.body.classList.remove(showingClassName)
-      window.localStorage.setItem(dismissedKey, "true")
+      window.localStorage.setItem(dismissedKey, "false")
     }
   }
 
@@ -45,7 +45,7 @@
       <div class="modal__content">
         <h3 class="modal__heading">Take required actions</h3>
         <p class="modal__line-item"><span class="modal__pictogram">{% include "templates/partials/icons/modal--deposit--desktop.svg" %}</span><span class="modal__line-item-text">Make your deposit</span></p>
-        <p class="modal__line-item"><span class="modal__pictogram">{% include "templates/partials/icons/modal--housing--desktop.svg" %}</span><span class="modal__line-item-text">Choose housing</span></p>
+        <p class="modal__line-item"><span class="modal__pictogram">{% include "templates/partials/icons/modal--housing--desktop.svg" %}</span><span class="modal__line-item-text">Review housing options</span></p>
         <p class="modal__line-item"><span class="modal__pictogram">{% include "templates/partials/icons/modal--documents--desktop.svg" %}</span><span class="modal__line-item-text">Submit required documents</span></p>
         <div class="modal__button button">
           <a href="https://admissions.risd.edu/portal/ugstatus"><span class="button__arrow button--left">{% include "templates/partials/icons/arrow--naked.html" %}</span>Log in</a>
@@ -84,16 +84,16 @@
       </a>
     </div>
     <div class="modal__star modal__star--bottom">
-      {% include "templates/partials/icons/modal--star-3--mobile.html" %} 
+      {% include "templates/partials/icons/modal--star-3--mobile.html" %}
       <a class="modal__link" onclick="modal.dismiss()">
         <div class="modal__content">
-          <h3 class="modal__heading">Plan for your<br>first year</h3> 
+          <h3 class="modal__heading">Plan for your<br>first year</h3>
           <div class="modal__arrow">
             {% include "templates/partials/icons/arrow-knocked-out--right.svg" %}
-          </div>          
+          </div>
         </div>
       </a>
     </div>
   </div>
-  <div class="modal__help"><p>Need more help?<br>Email us at <a href="mailto:welcome.risd.edu">welcome.risd.edu</a></p></div>
+  <div class="modal__help"><p>Need more help?<br>Email us at <a href="mailto:welcome@risd.edu">welcome@risd.edu</a></p></div>
 </section>

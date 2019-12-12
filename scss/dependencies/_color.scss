@@ -17,8 +17,8 @@ $button-dark: #EDC92D;
   --text-color--light: #{ $text-color--light };
   --background-color: #{ $background-color };
   --pop-color: #{ $pop-color };
-  --button-white: #{ button-white };
-  --button-light: #{ button-light };
-  --button-medium: #{ button-medium };
-  --button-dark: #{ button-dark };
+  --button-white: #{ $button-white };
+  --button-light: #{ $button-light };
+  --button-medium: #{ $button-medium };
+  --button-dark: #{ $button-dark };
 }
