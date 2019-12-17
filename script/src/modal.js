@@ -1,4 +1,5 @@
 var $ = global.jQuery;
+var cssTimeToMs = require( './css-time-to-ms' )
 
 module.exports = Modal;
 
@@ -9,6 +10,7 @@ function Modal () {
 
   var dismissedKey = 'modal-dismissed'
   var showingClassName = 'modal--showing'
+  var animateInClassName = 'animate-in'
 
   var selectors = {
     root: '.modal',
@@ -34,7 +36,7 @@ function Modal () {
   }
 
   function show ( force ) {
-    var dismissed = window.localStorage.getItem(dismissedKey)
+    var dismissed = window.localStorage.getItem( dismissedKey )
 
     // determine whether to show modal or not
     var showModal = false;
@@ -47,46 +49,64 @@ function Modal () {
     if ( showModal === false ) return;
     
     // show the modal
-    document.body.classList.add(showingClassName)
+    document.body.classList.add( showingClassName )
 
-    // remove animation duration
-    var animationDuration = nodes.root.style.getPropertyValue( '--animation-duration' )
-    nodes.root.style.setProperty( '--animation-duration', '0ms' )
+    // position modal elements to be animated in if they haven't already
+    if ( parseFloat( getComputedStyle(nodes.top).getPropertyValue( '--animation-translate' ) ) === 0 ) {
+      // remove animation duration
+      var animationDuration = nodes.root.style.getPropertyValue( '--animation-duration' )
+      nodes.root.style.setProperty( '--animation-duration', '0ms' )
 
-    // position modal elements to be animated in
-    var topBBox = nodes.top.getBoundingClientRect()
-    var topStartPosition = ( topBBox.top + topBBox.height ) * -1
-    nodes.top.style.setProperty('--animation-translate', `${ topStartPosition }px`)
+      var topBBox = nodes.top.getBoundingClientRect()
+      var topStartPosition = ( topBBox.left + topBBox.width ) * -1
+      nodes.top.style.setProperty('--animation-translate', `${ topStartPosition }px`)
 
-    var bottomBBox = nodes.bottom.getBoundingClientRect();
-    var bottomStartPosition = ( bottomBBox.bottom + bottomBBox.height )
-    nodes.bottom.style.setProperty('--animation-translate', `${ bottomStartPosition }px`)
+      var bottomBBox = nodes.bottom.getBoundingClientRect();
+      var bottomStartPosition = ( ( window.innerWidth - bottomBBox.right ) + bottomBBox.width )
+      nodes.bottom.style.setProperty('--animation-translate', `${ bottomStartPosition }px`)
 
-    var leftBBox = nodes.left.getBoundingClientRect();
-    var leftStartPosition = ( leftBBox.left + leftBBox.width ) * -1
-    nodes.left.style.setProperty('--animation-translate', `${ leftStartPosition }px`)
+      var leftBBox = nodes.left.getBoundingClientRect();
+      var leftStartPosition = ( leftBBox.left + leftBBox.width ) * -1
+      nodes.left.style.setProperty('--animation-translate', `${ leftStartPosition }px`)
 
-    var rightBBox = nodes.right.getBoundingClientRect();
-    var rightStartPosition = ( ( window.innerWidth - rightBBox.right ) + rightBBox.width )
-    nodes.right.style.setProperty('--animation-translate', `${ rightStartPosition }px`)
-    console.log( rightBBox )
+      var rightBBox = nodes.right.getBoundingClientRect();
+      var rightStartPosition = ( ( window.innerWidth - rightBBox.right ) + rightBBox.width )
+      nodes.right.style.setProperty('--animation-translate', `${ rightStartPosition }px`)
 
-    var helpBBox = nodes.help.getBoundingClientRect();
-    var helpStartPosition = ( helpBBox.bottom + helpBBox.height )
-    nodes.help.style.setProperty('--animation-translate', `${ helpStartPosition }px`)
-    console.log( helpBBox )
+      var helpBBox = nodes.help.getBoundingClientRect();
+      var helpStartPosition = ( helpBBox.bottom + helpBBox.height )
+      nodes.help.style.setProperty('--animation-translate', `${ helpStartPosition }px`)
 
-    // restore animation duration
-    nodes.root.style.setProperty( '--animation-duration', animationDuration )
-
+      // restore animation duration
+      nodes.root.style.setProperty( '--animation-duration', animationDuration )
+    }
+    
     // animate in
     setTimeout( function () {
-      $selectors.root.addClass( 'animate-in' )  
+      $selectors.root.addClass( animateInClassName )  
     }, 500 )
   }
 
   function dismiss () {
-    document.body.classList.remove(showingClassName)
-    window.localStorage.setItem(dismissedKey, "true")
+
+    var duration = cssTimeToMs(
+      getComputedStyle( nodes.root ).getPropertyValue( '--animation-duration' ),
+      0
+    )
+
+    if ( duration > 0 ) {
+      $selectors.root.on( 'transitionend', completeDismissModal )
+    }
+    else {
+      completeDismissModal()
+    }
+
+    $selectors.root.removeClass( animateInClassName )
+
+    function completeDismissModal () {
+      $selectors.root.off( 'transitionend', completeDismissModal )
+      document.body.classList.remove( showingClassName )
+      window.localStorage.setItem( dismissedKey, "true" )
+    }
   }
 }

@@ -24,7 +24,13 @@ body.modal--showing .modal {
 
   overflow-y: scroll;
 
+  // opacity: 0;
+
   background-color: rgba(53, 42, 34, 0.7);
+}
+
+.animate-in.modal {
+  // opacity: 1;
 }
 
 .modal__content--desktop {
@@ -57,18 +63,21 @@ body.modal--showing .modal {
   position: relative;
   z-index: 2;
   opacity: 0;
-  transition: transform var(--animation-duration) var(--animation-easing-function);
+  transition: transform var(--animation-duration) var(--animation-easing-function),
+    opacity 0s var(--animation-easing-function) var(--animation-duration);
 }
 
 .animate-in .modal__star {
   opacity: 1;
   transform: translate(0px, 0px);
+  transition: transform var(--animation-duration) var(--animation-easing-function),
+    opacity 0s var(--animation-easing-function) 0s;
 }
 
 .modal__star--top {
   --animation-translate: 0;
   
-  transform: translate(0, var(--animation-translate));
+  transform: translate(var(--animation-translate), 0);
 }
 
 .modal__star--bottom {
@@ -78,7 +87,7 @@ body.modal--showing .modal {
   z-index: 1;
   margin-top: -150px;
 
-  transform: translate(0, var(--animation-translate));
+  transform: translate(var(--animation-translate), 0);
 }
 
 .modal__star--left {
@@ -180,7 +189,8 @@ body.modal--showing .modal {
   z-index: 10;
   opacity: 0;
   transform: translate(0, var(--animation-translate));
-  transition: transform var(--animation-duration) var(--animation-easing-function);
+  transition: transform var(--animation-duration) var(--animation-easing-function),
+    opacity 0s var(--animation-easing-function) var(--animation-duration);
 
   @include respond-above(large) {
     margin-top: -3.5rem;
@@ -190,6 +200,8 @@ body.modal--showing .modal {
 .animate-in .modal__help {
   opacity: 1;
   transform: translate(0px, 0px);
+  transition: transform var(--animation-duration) var(--animation-easing-function),
+    opacity 0s var(--animation-easing-function) 0s;
 }
 
 .modal__help p {

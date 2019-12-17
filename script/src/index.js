@@ -14,7 +14,7 @@ navElement.style.display = 'block';
 
 var mainNav = require( './main-nav-v2' )()
 var modal = require( './modal' )()
-global.modal = modal
+window.modal = modal
 modal.show(true)
 
 // var exampleModule = require('./exampleModule.js')();
