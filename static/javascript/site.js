@@ -83791,6 +83791,25 @@ function CalendarAccordion() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],243:[function(require,module,exports){
+"use strict";
+
+module.exports = cssTimeToMS; // cssTime : String, defaulMS : Number? => ms : Number
+
+function cssTimeToMS(cssTime, defaultMS) {
+  if (!defaultMS) defaultMS = 300;
+
+  if (cssTime.endsWith('ms')) {
+    var ms = Number(cssTime.slice(0, -2));
+  } else if (cssTime.endsWith('s')) {
+    var ms = Number(cssTime.slice(0, -1)) * 1000;
+  } else {
+    var ms = defaultMS;
+  }
+
+  return ms;
+}
+
+},{}],244:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -83832,7 +83851,7 @@ function EdgeImageShift() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"imagesloaded":200}],244:[function(require,module,exports){
+},{"imagesloaded":200}],245:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -83856,7 +83875,7 @@ var mainNav = require('./main-nav-v2')();
 
 var modal = require('./modal')();
 
-global.modal = modal;
+window.modal = modal;
 modal.show(true); // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
 // var mobileMenuToggle = require('./mobileMenuToggle.js')();
@@ -83891,7 +83910,7 @@ var alumniAccordion = require('./alumniAccordion.js')();
 var edgeImageShift = require('./edgeImageShift.js')();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./alumniAccordion.js":241,"./calendarAccordion.js":242,"./edgeImageShift.js":243,"./lightbox.js":245,"./linkTarget.js":246,"./main-nav-v2":247,"./modal":248,"./resourceImageSort.js":249,"@risd/react-hydrator":4,"@risd/ui":22,"jquery":203,"lodash":204,"smartquotes":236}],245:[function(require,module,exports){
+},{"./alumniAccordion.js":241,"./calendarAccordion.js":242,"./edgeImageShift.js":244,"./lightbox.js":246,"./linkTarget.js":247,"./main-nav-v2":248,"./modal":249,"./resourceImageSort.js":250,"@risd/react-hydrator":4,"@risd/ui":22,"jquery":203,"lodash":204,"smartquotes":236}],246:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -84109,7 +84128,7 @@ function bem(base) {
   return element;
 }
 
-},{}],246:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -84134,7 +84153,7 @@ function LinkTarget() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],247:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -84240,11 +84259,14 @@ function ExternalLinks() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],248:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 (function (global){
 "use strict";
 
 var $ = global.jQuery;
+
+var cssTimeToMs = require('./css-time-to-ms');
+
 module.exports = Modal;
 
 function Modal() {
@@ -84254,6 +84276,7 @@ function Modal() {
 
   var dismissedKey = 'modal-dismissed';
   var showingClassName = 'modal--showing';
+  var animateInClassName = 'animate-in';
   var selectors = {
     root: '.modal',
     left: '.modal__star--left',
@@ -84286,44 +84309,58 @@ function Modal() {
     if (force === true) showModal = true;
     if (showModal === false) return; // show the modal
 
-    document.body.classList.add(showingClassName); // remove animation duration
+    document.body.classList.add(showingClassName); // position modal elements to be animated in if they haven't already
 
-    var animationDuration = nodes.root.style.getPropertyValue('--animation-duration');
-    nodes.root.style.setProperty('--animation-duration', '0ms'); // position modal elements to be animated in
+    if (parseFloat(getComputedStyle(nodes.top).getPropertyValue('--animation-translate')) === 0) {
+      // remove animation duration
+      var animationDuration = nodes.root.style.getPropertyValue('--animation-duration');
+      nodes.root.style.setProperty('--animation-duration', '0ms');
+      var topBBox = nodes.top.getBoundingClientRect();
+      var topStartPosition = (topBBox.left + topBBox.width) * -1;
+      nodes.top.style.setProperty('--animation-translate', "".concat(topStartPosition, "px"));
+      var bottomBBox = nodes.bottom.getBoundingClientRect();
+      var bottomStartPosition = window.innerWidth - bottomBBox.right + bottomBBox.width;
+      nodes.bottom.style.setProperty('--animation-translate', "".concat(bottomStartPosition, "px"));
+      var leftBBox = nodes.left.getBoundingClientRect();
+      var leftStartPosition = (leftBBox.left + leftBBox.width) * -1;
+      nodes.left.style.setProperty('--animation-translate', "".concat(leftStartPosition, "px"));
+      var rightBBox = nodes.right.getBoundingClientRect();
+      var rightStartPosition = window.innerWidth - rightBBox.right + rightBBox.width;
+      nodes.right.style.setProperty('--animation-translate', "".concat(rightStartPosition, "px"));
+      var helpBBox = nodes.help.getBoundingClientRect();
+      var helpStartPosition = helpBBox.bottom + helpBBox.height;
+      nodes.help.style.setProperty('--animation-translate', "".concat(helpStartPosition, "px")); // restore animation duration
 
-    var topBBox = nodes.top.getBoundingClientRect();
-    var topStartPosition = (topBBox.top + topBBox.height) * -1;
-    nodes.top.style.setProperty('--animation-translate', "".concat(topStartPosition, "px"));
-    var bottomBBox = nodes.bottom.getBoundingClientRect();
-    var bottomStartPosition = bottomBBox.bottom + bottomBBox.height;
-    nodes.bottom.style.setProperty('--animation-translate', "".concat(bottomStartPosition, "px"));
-    var leftBBox = nodes.left.getBoundingClientRect();
-    var leftStartPosition = (leftBBox.left + leftBBox.width) * -1;
-    nodes.left.style.setProperty('--animation-translate', "".concat(leftStartPosition, "px"));
-    var rightBBox = nodes.right.getBoundingClientRect();
-    var rightStartPosition = window.innerWidth - rightBBox.right + rightBBox.width;
-    nodes.right.style.setProperty('--animation-translate', "".concat(rightStartPosition, "px"));
-    console.log(rightBBox);
-    var helpBBox = nodes.help.getBoundingClientRect();
-    var helpStartPosition = helpBBox.bottom + helpBBox.height;
-    nodes.help.style.setProperty('--animation-translate', "".concat(helpStartPosition, "px"));
-    console.log(helpBBox); // restore animation duration
+      nodes.root.style.setProperty('--animation-duration', animationDuration);
+    } // animate in
 
-    nodes.root.style.setProperty('--animation-duration', animationDuration); // animate in
 
     setTimeout(function () {
-      $selectors.root.addClass('animate-in');
+      $selectors.root.addClass(animateInClassName);
     }, 500);
   }
 
   function dismiss() {
-    document.body.classList.remove(showingClassName);
-    window.localStorage.setItem(dismissedKey, "true");
+    var duration = cssTimeToMs(getComputedStyle(nodes.root).getPropertyValue('--animation-duration'), 0);
+
+    if (duration > 0) {
+      $selectors.root.on('transitionend', completeDismissModal);
+    } else {
+      completeDismissModal();
+    }
+
+    $selectors.root.removeClass(animateInClassName);
+
+    function completeDismissModal() {
+      $selectors.root.off('transitionend', completeDismissModal);
+      document.body.classList.remove(showingClassName);
+      window.localStorage.setItem(dismissedKey, "true");
+    }
   }
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],249:[function(require,module,exports){
+},{"./css-time-to-ms":243}],250:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -84414,4 +84451,4 @@ function StudioImageSort() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"imagesloaded":200,"jquery-bridget":202,"packery":212}]},{},[244]);
+},{"imagesloaded":200,"jquery-bridget":202,"packery":212}]},{},[245]);
