@@ -1,4 +1,5 @@
 var $ = global.jQuery;
+var EventEmitter = require( 'events' )
 var cssTimeToMs = require( './css-time-to-ms' )
 
 module.exports = Modal;
@@ -7,6 +8,8 @@ function Modal () {
   if (!(this instanceof Modal)) {
     return new Modal();
   }
+
+  var emitter = new EventEmitter()
 
   var dismissedKey = 'modal-dismissed'
   var showingClassName = 'modal--showing'
@@ -33,6 +36,7 @@ function Modal () {
   return {
     show: show,
     dismiss: dismiss,
+    emitter: emitter,
   }
 
   function show ( force ) {
@@ -47,6 +51,8 @@ function Modal () {
     // show if forced
     if ( force === true ) showModal = true;
     if ( showModal === false ) return;
+
+    emitter.emit( 'show' )
     
     // show the modal
     document.body.classList.add( showingClassName )
@@ -107,6 +113,7 @@ function Modal () {
       $selectors.root.off( 'transitionend', completeDismissModal )
       document.body.classList.remove( showingClassName )
       window.localStorage.setItem( dismissedKey, "true" )
+      emitter.emit( 'dismiss' )
     }
   }
 }

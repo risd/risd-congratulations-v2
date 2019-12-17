@@ -1,0 +1,123 @@
+{#
+Writes styles to be cycled through.
+
+Expects:
+
+galleryStylesFromGallerySpec = [{
+  background_image?: {
+    querySelector: '',
+    class: '',
+    image: { resize_url }
+  },
+  color?: {
+    querySelector: '',
+    class: '',
+    classValue: '',
+  }
+}]
+
+#}
+
+{% for row in galleryStylesFromGallerySpec %}
+  {% if loop.first %}
+    {% set gallery_styles_created = [] %}
+    {% set responsive_background_images = [] %}
+    <style>
+  {% endif %}
+
+  {% if row.background_image &&
+        row.background_image.image &&
+        row.background_image.class &&
+        gallery_styles_created.indexOf(row.background_image.class) === -1 %}
+
+    {% set background_image = row.background_image.image %}
+    {% set backgound_image_class = row.background_image.class %}
+
+    {% set gallery_styles_created = gallery_styles_created.concat([backgound_image_class]) %}
+
+    {% set responsive_background_images = responsive_background_images.concat([{
+        mediaQuery: '@media screen and (max-width: 360px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 360,
+      }, {
+        mediaQuery: '@media screen and (min-width: 361px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 768,
+      }, {
+        mediaQuery: '@media screen and (min-width: 769px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 834,
+      }, {
+        mediaQuery: '@media screen and (min-width: 835px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 1024,
+      }, {
+        mediaQuery: '@media screen and (min-width: 1025px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 1200,
+      }, {
+        mediaQuery: '@media screen and (min-width: 1201px)',
+        class: backgound_image_class,
+        image: background_image,
+        imageSize: 1400,
+      }]) %}
+  {% endif %}
+
+  {% if row.color &&
+        row.color.class &&
+        row.color.classValue &&
+        gallery_styles_created.indexOf(row.color.class) === -1 %}
+
+    {% set color_class = row.color.class %}
+    {% set color_class_value = row.color.classValue %}
+    {% set gallery_styles_created = gallery_styles_created.concat([color_class]) %}
+
+    .{{ color_class }} {
+      {{ color_class_value }}
+    }
+  {% endif %}
+
+  {% if loop.last %}
+    {% set responsive_background_images_by_media_query = responsive_background_images|groupBy('mediaQuery') %}
+      ._preload_image {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        opacity: 0;
+        pointer-events: none;
+      }
+      {% for media_query_object in responsive_background_images_by_media_query %}
+        {% set media_query = loop.key %}
+        {% set preload_images_for_media_query = [] %}
+        {{ media_query }} {
+        {% for media_query_rules in media_query_object %}
+          {% set media_query_background_image = media_query_rules.image|imageSize(media_query_rules.imageSize) %}
+          {% set preload_images_for_media_query = preload_images_for_media_query.concat([media_query_background_image]) %}
+          .{{ media_query_rules.class }} {
+            background-image: url("{{ media_query_background_image }}");
+          }
+        {% endfor %}
+
+          ._preload_image {
+            {% for background_image in preload_images_for_media_query %}
+            {% if loop.first %}
+              background-image: url("{{ background_image }}"),
+            {% elseif !loop.last %}
+              url("{{ background_image }}"),
+            {% else %}
+              url("{{ background_image }}");
+            {% endif %}
+            {% endfor %}
+          }
+        } {# end of media query block #}
+      {% endfor %}
+    </style>
+
+    <div class="_preload_image"></div>
+  {% endif %}
+{% endfor %}
