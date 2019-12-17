@@ -83852,12 +83852,16 @@ hydrateComponents(themes.congratulationsV2); // unhide nav element once it's hyd
 var navElement = document.querySelector('[data-react-component="Nav"]');
 navElement.style.display = 'block';
 
-var mainNav = require('./main-nav-v2')(); // var exampleModule = require('./exampleModule.js')();
+var mainNav = require('./main-nav-v2')();
+
+var modal = require('./modal')();
+
+global.modal = modal;
+modal.show(true); // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
 // var mobileMenuToggle = require('./mobileMenuToggle.js')();
 // var desktopMenuToggle = require('./desktopMenuToggle.js')();
 // var desktopNavHeight = require('./desktopNavHeight.js')();
-
 
 var resourceImageSort = require('./resourceImageSort.js')();
 
@@ -83887,7 +83891,7 @@ var alumniAccordion = require('./alumniAccordion.js')();
 var edgeImageShift = require('./edgeImageShift.js')();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./alumniAccordion.js":241,"./calendarAccordion.js":242,"./edgeImageShift.js":243,"./lightbox.js":245,"./linkTarget.js":246,"./main-nav-v2":247,"./resourceImageSort.js":248,"@risd/react-hydrator":4,"@risd/ui":22,"jquery":203,"lodash":204,"smartquotes":236}],245:[function(require,module,exports){
+},{"./alumniAccordion.js":241,"./calendarAccordion.js":242,"./edgeImageShift.js":243,"./lightbox.js":245,"./linkTarget.js":246,"./main-nav-v2":247,"./modal":248,"./resourceImageSort.js":249,"@risd/react-hydrator":4,"@risd/ui":22,"jquery":203,"lodash":204,"smartquotes":236}],245:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -84185,6 +84189,7 @@ function Headings() {
       var $clicked = $(event.target);
 
       if ($clicked.hasClass(classes.link) || $clicked.parent().hasClass(classes.link)) {
+        // clicking a link, no need to change the display
         return;
       } else if ($clicked.hasClass(classes.root)) {
         var $heading = $clicked;
@@ -84236,6 +84241,89 @@ function ExternalLinks() {
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],248:[function(require,module,exports){
+(function (global){
+"use strict";
+
+var $ = global.jQuery;
+module.exports = Modal;
+
+function Modal() {
+  if (!(this instanceof Modal)) {
+    return new Modal();
+  }
+
+  var dismissedKey = 'modal-dismissed';
+  var showingClassName = 'modal--showing';
+  var selectors = {
+    root: '.modal',
+    left: '.modal__star--left',
+    right: '.modal__star--right',
+    top: '.modal__star--top',
+    bottom: '.modal__star--bottom',
+    help: '.modal__help'
+  };
+  var $selectors = {};
+  var nodes = {}; // populate `$selectors` and `nodes` from `selectors`
+
+  Object.keys(selectors).forEach(function (key) {
+    $selectors[key] = $(selectors[key]);
+    nodes[key] = $selectors[key].get(0);
+  });
+  return {
+    show: show,
+    dismiss: dismiss
+  };
+
+  function show(force) {
+    var dismissed = window.localStorage.getItem(dismissedKey); // determine whether to show modal or not
+
+    var showModal = false; // do not show if previously dismissed
+
+    if (dismissed === "true") showModal = false; // do not show if coming from admissions site
+
+    if (document.referrer === "https://admissions.risd.edu/") showModal = false; // show if forced
+
+    if (force === true) showModal = true;
+    if (showModal === false) return; // show the modal
+
+    document.body.classList.add(showingClassName); // remove animation duration
+
+    var animationDuration = nodes.root.style.getPropertyValue('--animation-duration');
+    nodes.root.style.setProperty('--animation-duration', '0ms'); // position modal elements to be animated in
+
+    var topBBox = nodes.top.getBoundingClientRect();
+    var topStartPosition = (topBBox.top + topBBox.height) * -1;
+    nodes.top.style.setProperty('--animation-translate', "".concat(topStartPosition, "px"));
+    var bottomBBox = nodes.bottom.getBoundingClientRect();
+    var bottomStartPosition = bottomBBox.bottom + bottomBBox.height;
+    nodes.bottom.style.setProperty('--animation-translate', "".concat(bottomStartPosition, "px"));
+    var leftBBox = nodes.left.getBoundingClientRect();
+    var leftStartPosition = (leftBBox.left + leftBBox.width) * -1;
+    nodes.left.style.setProperty('--animation-translate', "".concat(leftStartPosition, "px"));
+    var rightBBox = nodes.right.getBoundingClientRect();
+    var rightStartPosition = window.innerWidth - rightBBox.right + rightBBox.width;
+    nodes.right.style.setProperty('--animation-translate', "".concat(rightStartPosition, "px"));
+    console.log(rightBBox);
+    var helpBBox = nodes.help.getBoundingClientRect();
+    var helpStartPosition = helpBBox.bottom + helpBBox.height;
+    nodes.help.style.setProperty('--animation-translate', "".concat(helpStartPosition, "px"));
+    console.log(helpBBox); // restore animation duration
+
+    nodes.root.style.setProperty('--animation-duration', animationDuration); // animate in
+
+    setTimeout(function () {
+      $selectors.root.addClass('animate-in');
+    }, 500);
+  }
+
+  function dismiss() {
+    document.body.classList.remove(showingClassName);
+    window.localStorage.setItem(dismissedKey, "true");
+  }
+}
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],249:[function(require,module,exports){
 (function (global){
 "use strict";
 
