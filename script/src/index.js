@@ -23,19 +23,17 @@ window.modal = modal
 
 modal.emitter.on( 'show', function () {
   if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].pause === 'function' ) {
-    console.log( 'pause-on-show' )
     galleries[ 0 ].pause()
   }
 } )
 
 modal.emitter.on( 'dismiss', function () {
   if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].resume === 'function' ) {
-    console.log( 'resume-on-dismiss' )
     galleries[ 0 ].resume()
   }
 } )
 
-modal.show(true)
+modal.show( true )
 
 // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
