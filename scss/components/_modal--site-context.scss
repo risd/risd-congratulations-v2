@@ -1,5 +1,5 @@
 body.modal--showing {
-  // overflow: hidden;
+  overflow: hidden;
 }
 
 body.modal--showing .modal {
@@ -10,6 +10,9 @@ body.modal--showing .modal {
 }
 
 .modal {
+  --animation-duration: 700ms;
+  --animation-easing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
   display: none;
 
   position: fixed;
@@ -52,17 +55,37 @@ body.modal--showing .modal {
 .modal__star {
   position: relative;
   z-index: 2;
+  opacity: 0;
+  transition: transform var(--animation-duration) var(--animation-easing-function);
+}
+
+.animate-in .modal__star {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+
+.modal__star--top {
+  --animation-translate: 0;
+  
+  transform: translate(0, var(--animation-translate));
 }
 
 .modal__star--bottom {
+  --animation-translate: 0;
+
   position: relative;
   z-index: 1;
   margin-top: -150px;
+
+  transform: translate(0, var(--animation-translate));
 }
 
 .modal__star--left {
+  --animation-translate: 0;
   margin-right: -80px;
   z-index: 3;
+
+  transform: translate(var(--animation-translate), 0);
 }
 
 .modal__star--left .modal__content {
@@ -71,7 +94,9 @@ body.modal--showing .modal {
 }
 
 .modal__star--right {
+  --animation-translate: 0;
   margin-left: -80px;
+  transform: translate(var(--animation-translate), 0);
 }
 
 .modal__star--right .modal__content {
@@ -128,8 +153,8 @@ body.modal--showing .modal {
 
 .modal__close {
   position: absolute;
-  right: 1rem;
-  top: 1rem;
+  right: 0rem;
+  top: 2.7rem;
   cursor: pointer;
   z-index: 3;
 }
@@ -145,15 +170,24 @@ body.modal--showing .modal {
 }
 
 .modal__help {
+  --animateion-translate: 0;
   margin-top: 1rem;
   margin-bottom: 2rem;
   text-align: center;
   position: relative;
   z-index: 10;
+  opacity: 0;
+  transform: translate(0, var(--animation-translate));
+  transition: transform var(--animation-duration) var(--animation-easing-function);
 
   @include respond-above(large) {
     margin-top: -3.5rem;
   }
+}
+
+.animate-in .modal__help {
+  opacity: 1;
+  transform: translate(0px, 0px);
 }
 
 .modal__help p {

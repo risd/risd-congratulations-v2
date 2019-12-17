@@ -1,43 +1,3 @@
-<script>
-  /**
-   * Modal
-   * - defaults to showing
-   * - once dismissed, never show again
-   * - can be dismissed with the X
-   */
-  function Modal () {
-    var dismissedKey = 'modal-dismissed'
-    var showingClassName = 'modal--showing'
-
-    return {
-      show: show,
-      dismiss: dismiss,
-    }
-
-    function show ( force ) {
-      var dismissed = window.localStorage.getItem(dismissedKey)
-      // show if forced
-      if ( force === true ) {
-        document.body.classList.add(showingClassName)
-        return;
-      }
-      // do not show if previously dismissed
-      if ( dismissed === "true" ) return;
-      // do not show if coming from admissions site
-      if ( document.referrer === "https://admissions.risd.edu/" ) return;
-      document.body.classList.add(showingClassName)
-    }
-
-    function dismiss () {
-      document.body.classList.remove(showingClassName)
-      window.localStorage.setItem(dismissedKey, "false")
-    }
-  }
-
-  var modal = Modal()
-  modal.show()
-</script>
-
 <section class="modal">
   <div class="modal__content--desktop">
     <div class="modal__star modal__star--left">
@@ -69,10 +29,10 @@
     </div>
   </div>
   <div class="modal__content--mobile">
-    <div class="modal__close" onclick="modal.dismiss()">
-      {% include "templates/partials/icons/modal--close--mobile.html" %}
-    </div>
     <div class="modal__star modal__star--top">
+      <div class="modal__close" onclick="modal.dismiss()">
+        {% include "templates/partials/icons/modal--close--mobile.html" %}
+      </div>
       {% include "templates/partials/icons/modal--star-2--mobile.html" %}
       <a class="modal__link" href="https://admissions.risd.edu/portal/ugstatus">
         <div class="modal__content">

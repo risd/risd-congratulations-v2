@@ -13,6 +13,9 @@ const navElement = document.querySelector('[data-react-component="Nav"]');
 navElement.style.display = 'block';
 
 var mainNav = require( './main-nav-v2' )()
+var modal = require( './modal' )()
+global.modal = modal
+modal.show(true)
 
 // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
