@@ -73,19 +73,30 @@
   }
 }
 
-.modal__button {
-  a { 
+.modal__star--left .modal__button,
+.modal__star--right .modal__button {
+  a:hover {
     color: $background-color;
-    border-bottom: 0; 
-  
-    &:hover {
-      color: $background-color;
-      .arrow-geometry {
-        fill: $background-color;
-      }
+    .arrow-geometry {
+      fill: $background-color;
     }
   }
+}
+
+.modal__star--left .modal__button {
+  a {
+    color: var(--pop-color-2);  
+  }
   .arrow-geometry {
-    fill: $background-color;
+    fill: var(--pop-color-2);
+  }
+}
+
+.modal__star--right .modal__button {
+  a {
+    color: var(--pop-color);  
+  }
+  .arrow-geometry {
+    fill: var(--pop-color);
   }
 }

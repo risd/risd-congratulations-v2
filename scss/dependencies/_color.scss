@@ -2,6 +2,7 @@ $text-color: #000000;
 $text-color--light: rgb(171, 171, 171);
 $background-color: rgb(255, 255, 255);
 $pop-color: #EDC92D;
+$pop-color-2: rgb(277, 110, 94);
 
 %object-multiply{
 	mix-blend-mode:multiply;
@@ -17,6 +18,7 @@ $button-dark: #EDC92D;
   --text-color--light: #{ $text-color--light };
   --background-color: #{ $background-color };
   --pop-color: #{ $pop-color };
+  --pop-color-2: #{ $pop-color-2 };
   --button-white: #{ $button-white };
   --button-light: #{ $button-light };
   --button-medium: #{ $button-medium };
