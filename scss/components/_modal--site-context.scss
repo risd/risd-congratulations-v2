@@ -26,11 +26,12 @@ body.modal--showing .modal {
 
   // opacity: 0;
 
-  background-color: rgba(53, 42, 34, 0.7);
+  background-color: rgba(53, 42, 34, 0.0);
+  transition: background-color var(--animation-duration) var(--animation-easing-function);
 }
 
 .animate-in.modal {
-  // opacity: 1;
+  background-color: rgba(53, 42, 34, 0.7);
 }
 
 .modal__content--desktop {
