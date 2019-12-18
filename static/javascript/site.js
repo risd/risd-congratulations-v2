@@ -84589,21 +84589,25 @@ var mainNav = require('./main-nav-v2')();
 var modal = require('./modal')();
 
 window.modal = modal;
-modal.emitter.on('show', function () {
-  if (galleries && galleries[0] && typeof galleries[0].pause === 'function') {
-    galleries[0].pause();
-  }
-});
-modal.emitter.on('dismiss', function () {
-  if (galleries && galleries[0] && typeof galleries[0].resume === 'function') {
-    galleries[0].resume();
-  }
-});
-modal.show(true); // var exampleModule = require('./exampleModule.js')();
+
+if (modal && modal.emitter) {
+  modal.emitter.on('show', function () {
+    if (galleries && galleries[0] && typeof galleries[0].pause === 'function') {
+      galleries[0].pause();
+    }
+  });
+  modal.emitter.on('dismiss', function () {
+    if (galleries && galleries[0] && typeof galleries[0].resume === 'function') {
+      galleries[0].resume();
+    }
+  });
+  modal.show(true);
+} // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
 // var mobileMenuToggle = require('./mobileMenuToggle.js')();
 // var desktopMenuToggle = require('./desktopMenuToggle.js')();
 // var desktopNavHeight = require('./desktopNavHeight.js')();
+
 
 var resourceImageSort = require('./resourceImageSort.js')();
 
@@ -85018,6 +85022,7 @@ function Modal() {
     $selectors[key] = $(selectors[key]);
     nodes[key] = $selectors[key].get(0);
   });
+  if ($selectors.root.length === 0) return false;
   return {
     show: show,
     dismiss: dismiss,
