@@ -33,6 +33,8 @@ function Modal () {
     nodes[ key ] = $selectors[ key ].get( 0 )
   } )
 
+  if ( $selectors.root.length === 0 ) return false;
+
   return {
     show: show,
     dismiss: dismiss,

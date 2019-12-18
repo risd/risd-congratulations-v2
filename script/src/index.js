@@ -21,19 +21,21 @@ var mainNav = require( './main-nav-v2' )()
 var modal = require( './modal' )()
 window.modal = modal
 
-modal.emitter.on( 'show', function () {
-  if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].pause === 'function' ) {
-    galleries[ 0 ].pause()
-  }
-} )
+if ( modal && modal.emitter ) {  
+  modal.emitter.on( 'show', function () {
+    if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].pause === 'function' ) {
+      galleries[ 0 ].pause()
+    }
+  } )
 
-modal.emitter.on( 'dismiss', function () {
-  if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].resume === 'function' ) {
-    galleries[ 0 ].resume()
-  }
-} )
+  modal.emitter.on( 'dismiss', function () {
+    if ( galleries && galleries[ 0 ] && typeof galleries[ 0 ].resume === 'function' ) {
+      galleries[ 0 ].resume()
+    }
+  } )
 
-modal.show( true )
+  modal.show( true ) 
+}
 
 // var exampleModule = require('./exampleModule.js')();
 // var stickyNav = require('./stickyNav.js')();
