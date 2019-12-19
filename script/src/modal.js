@@ -50,6 +50,8 @@ function Modal () {
     if ( dismissed === "true" ) showModal = false;
     // do not show if coming from admissions site
     if ( document.referrer === "https://admissions.risd.edu/" ) showModal = false;
+    // do not show if coming from same site
+    if ( document.referrer.indexOf( window.location.host ) ) { showModal = false; console.log('samesies')}
     // show if forced
     if ( force === true ) showModal = true;
     if ( showModal === false ) return;

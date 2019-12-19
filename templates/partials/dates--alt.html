@@ -55,7 +55,7 @@
         {% endif %}
 
         <div class="calendar__text">
-      <h3 class="calendar__title" {% if date.description %}data-description-exists{% endif %}>{{ date.editedName }}{% if date.description %}<span class="calendar__toggle">{% include "templates/partials/icons/arrow--clothed.html" %}</span>{% endif %}</h3>
+      <h3 class="calendar__title" {% if date.description %}data-description-exists{% endif %}>{{ date.editedName }}{% if date.description %}<span class="calendar__toggle">{% include "templates/partials/icons/arrow--up-small.svg" %}</span>{% endif %}</h3>
           {% include "templates/partials/time_format.html" with {
             event: date
           } %}
