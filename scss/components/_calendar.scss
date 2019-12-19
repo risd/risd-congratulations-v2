@@ -121,10 +121,8 @@
       display: block;
     }
 
-    .calendar__toggle {
-      .arrow {
-        transform: rotate(270deg);
-      }
+    .calendar__toggle .arrow--up-small {
+      transform: rotate(0deg) translate(5px, -5px);
     }
   }
 }
@@ -214,8 +212,9 @@
 
 .calendar__toggle {
   padding-left: 1rem;
-  .arrow {
-    transform: rotate(90deg);
+  .arrow--up-small {
+    transform: rotate(180deg) translate(0px, -2px);
+    transition: transform 0.28s ease;
   }
 }
 

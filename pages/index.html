@@ -16,8 +16,34 @@
 
   <main>
 
+    {# Poster Moment Gallery Specification --- Start #}
+
+    {% set gallery_spec = [] %}
+    {% for row in home.hero_carousel_images %}
+      {% set background_class_name = 'home__hero-background--' + loop.index0 %}
+
+      {% set gallery_spec = gallery_spec.concat([{
+          background_image: {
+            querySelector: '.home__hero--center',
+            class: background_class_name,
+            image: row.image,
+          },
+        }]) %}
+    {% endfor %}
+
+    {% include 'templates/partials/gallery-styles.html' with { galleryStylesFromGallerySpec: gallery_spec } only %}
+
+    {% if gallery_spec|size > 0 %}
+      {% set first_gallery_spec = gallery_spec[0] %}
+      {% set hero_image_container_class = first_gallery_spec.background_image.class %}
+    {% else %}
+      {% set hero_image_container_class = '' %}
+    {% endif %}
+
+    {# Poster Moment Gallery Specification --- End #}
+
     <section class="section--full home__hero">
-      <div class="home__hero--center" style="background-image: url({{ home.hero_image|imageSize(1200) }})"></div>
+      <div class="home__hero--center {{ hero_image_container_class }}" data-gallery-spec='{{ gallery_spec|json }}'></div>
       <div class="home__hero-text">
         <h4 class="home__hero-caption">{{ home.intro_line }}</h4>
         <div class="home__hero-logo">{% include "templates/partials/icons/wordmark.html" %}</div>

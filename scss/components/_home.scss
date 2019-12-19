@@ -35,20 +35,39 @@
 
 .home__hero-caption {
   @extend %sans-serif;
-  @include text-size($sans-l);
-  font-weight: bold;
-  color: $background-color;
-  margin-bottom: 2rem;
+  @include text-size($hero-caption);
+  color: var(--pop-color);
+  letter-spacing: 2px;
   flex-basis: 100%;
+  margin-bottom: 0.6rem;
+  padding: 0 1rem;
   text-align: center;
+  filter: drop-shadow(5px 5px 5px #00000080);
+
+  @include respond-above(medium) {
+    margin-bottom: 0.75rem;
+    letter-spacing: 1px;
+  }
+
+  @include respond-above(large) {
+    margin-bottom: 0.9rem;
+    letter-spacing: 0;
+  }
+
+  @include respond-above(huge) {
+    margin-bottom: -1rem;
+    letter-spacing: -5px;
+  }
 }
 
 .home__hero-logo {
   flex-basis: 100%;
   text-align: center;
 
-  svg {
-    width: 50%;
+  svg.global-nav__logo {
+    width: 37%;
+    fill: var(--background-color);
+    filter: drop-shadow(5px 5px 5px #00000080);
   }
 }
 

@@ -86,8 +86,6 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 22px;
-  height: 28px;
   transform-origin: 50% 50%;
   transform: rotate(180deg);
   transition: transform 0.28s ease;
@@ -98,13 +96,8 @@
   stroke: $text-color;
 }
 
-.main-nav__section-toggle svg {
-  width: 22px;
-  height: 28px;
-}
-
 .main-nav__section--opened .main-nav__section-toggle {
-  transform: rotate(0deg) translate(5px, -5px);
+  transform: rotate(0deg) translate(5px, -1px);
 }
 
 .main-nav__useful-links-heading {

@@ -15,7 +15,7 @@ function MainNav() {
   if (!(this instanceof MainNav)) {
     return new MainNav()
   }
-  var headings = Headings()
+  var headingsspoS = Headings()
   var externalLinks = ExternalLinks()
 }
 
@@ -42,10 +42,11 @@ function Headings () {
       .each( function ( index, heading ) {
         var $heading = $( heading )
 
+        // this svg is a duplicate of /templates/partials/icons/arrow--up-small.svg
         $heading.append( `<span class="${ classes.toggle }">
-          <svg viewBox="30 20 50 50">
-            <path class="toggle-geometry" d="M47.2,61.4L34.9,49.2c-1.4-1.4-1.4-3.9,0-5.4c1.5-1.4,4-1.4,5.4,0l9.5,9.5l9.4-9.5c1.5-1.4,3.9-1.4,5.4,0 c1.4,1.5,1.4,4,0,5.4L52.6,61.4c-0.7,0.7-1.8,1.2-2.7,1.2C48.8,62.6,47.9,62.1,47.2,61.4z"/>
-          </svg>
+            <svg viewBox="30 20 50 50" class="arrow--up-small">
+              <path class="toggle-geometry" d="M47.2,61.4L34.9,49.2c-1.4-1.4-1.4-3.9,0-5.4c1.5-1.4,4-1.4,5.4,0l9.5,9.5l9.4-9.5c1.5-1.4,3.9-1.4,5.4,0 c1.4,1.5,1.4,4,0,5.4L52.6,61.4c-0.7,0.7-1.8,1.2-2.7,1.2C48.8,62.6,47.9,62.1,47.2,61.4z"/>
+            </svg>
           </span>`
         )
       } )

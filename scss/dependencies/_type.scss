@@ -185,6 +185,14 @@ $modal-description: (
   base: (18px, 22px)
 );
 
+$hero-caption: (
+  base: (60px, 60px),
+  small: (67px, 67px),
+  medium: (111px, 111px),
+  large: (160px, 160px),
+  huge: (240px, 240px)
+);
+
 
 /* --------------------------------------------------------
 Mixin for font-size and line-height definition
