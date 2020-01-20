@@ -31,7 +31,6 @@
   align-items: center;
   align-content: center;
   justify-content: center;
-  filter: drop-shadow(5px 5px 5px #00000070);
 }
 
 .home__hero-caption {
@@ -43,7 +42,6 @@
   margin-bottom: 0.6rem;
   padding: 0 1rem;
   text-align: center;
-  filter: drop-shadow(5px 5px 5px #00000080);
 
   @include respond-above(medium) {
     margin-bottom: 0.75rem;
@@ -84,6 +82,10 @@
   @include respond-above(medium) {
     display: none;
   }
+}
+
+.home__hero-lockup {
+  filter: drop-shadow(5px 5px 5px #00000070);
 }
 
 
