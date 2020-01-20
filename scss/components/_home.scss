@@ -61,6 +61,32 @@
   }
 }
 
+.home__hero-lockup-wrapper {
+  text-align: center;
+  max-width: calc(100% - 2rem);
+}
+
+.home__hero-lockup {
+  max-width: 100%;
+}
+
+.home__hero--desktop {
+  display: none;
+
+  @include respond-above(medium) {
+    display: block;
+  }
+}
+
+.home__hero--mobile {
+  display: block;
+
+  @include respond-above(medium) {
+    display: none;
+  }
+}
+
+
 .home__hero-logo {
   flex-basis: 100%;
   text-align: center;
