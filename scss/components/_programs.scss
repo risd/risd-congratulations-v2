@@ -54,6 +54,7 @@
 }
 
 .program__title {
+  @include text-size($sans-l);
   margin-bottom: 1rem;
 }
 
