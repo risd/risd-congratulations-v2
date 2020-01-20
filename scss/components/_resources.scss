@@ -136,9 +136,19 @@
   margin-bottom: 1rem;
 
   a {
-    background-color: $pop-color;
+    background-color: var(--pop-color);
     border-bottom: none;
     padding: 0.3em 0.5em;
     display: inline-block;
+    color: var(--text-color);
+  }
+
+  a:hover {
+    color: var(--text-color);
+  }
+
+  .arrow-geometry,
+  &:hover .arrow-geometry {
+    fill: var(--text-color);
   }
 }
