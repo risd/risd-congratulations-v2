@@ -61,7 +61,8 @@
 
 .home__hero-lockup-wrapper {
   text-align: center;
-  max-width: calc(100% - 2rem);
+  max-width: 1600px;
+  width: calc(100% - 2rem);
 }
 
 .home__hero-lockup {
@@ -86,18 +87,6 @@
 
 .home__hero-lockup {
   filter: drop-shadow(5px 5px 5px #00000070);
-}
-
-
-.home__hero-logo {
-  flex-basis: 100%;
-  text-align: center;
-
-  svg.global-nav__logo {
-    width: 37%;
-    fill: var(--background-color);
-    filter: drop-shadow(5px 5px 5px #00000080);
-  }
 }
 
 .home__hero-button {
