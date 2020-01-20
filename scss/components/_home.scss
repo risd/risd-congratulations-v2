@@ -66,6 +66,7 @@
 
 .home__hero-lockup {
   max-width: 100%;
+  filter: drop-shadow(5px 5px 5px #00000070);
 }
 
 .home__hero--desktop {
@@ -82,10 +83,6 @@
   @include respond-above(medium) {
     display: none;
   }
-}
-
-.home__hero-lockup {
-  filter: drop-shadow(5px 5px 5px #00000070);
 }
 
 .home__hero-button {
