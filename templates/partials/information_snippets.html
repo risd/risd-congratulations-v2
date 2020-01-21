@@ -6,7 +6,7 @@
       {% if snippet.related_links %}
         <ul class="info-snippets__links">
         {% for link in snippet.related_links %}
-          <li class="info-snippets__link button"><a href="{{ link.link_url }}">{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+          <li class="info-snippets__link button"><a href="{{ link.link_url }}" {{ openExternalLinkInNewWindow(link.link_url) }}>{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
         {% endfor %}
         </ul>
       {% endif %}

@@ -17,7 +17,7 @@
     </figure>
     {% if resource_image.hide_caption !== true %}
       {% if resource_image.link_url %}
-        <figcaption class="resource__caption button"><a href="{{ resource_image.link_url }}">{{ resource_image.caption }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></figcaption>
+        <figcaption class="resource__caption button"><a href="{{ resource_image.link_url }}" {{ openExternalLinkInNewWindow(resource_image.link_url) }}>{{ resource_image.caption }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></figcaption>
       {% else %}
         <figcaption class="resource__caption">{{ resource_image.caption }}</figcaption>
       {% endif %}

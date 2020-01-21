@@ -2,13 +2,13 @@
   <div class="program__item">
   {% if program.image %}
     <div class="program__image">
-      <a href="{{ program.link_url }}" target="_blank"><img src="{{ program.image|imageSize(600) }}" alt=""></a>
+      <a href="{{ program.link_url }}" {{ openExternalLinkInNewWindow(program.link_url) }}><img src="{{ program.image|imageSize(600) }}" alt=""></a>
     </div>
   {% endif %}
     <div class="program__text">
       <h3 class="program__title">
       {% if program.link_url %}
-        <a href="{{ program.link_url }}" target="_blank">{{ program.name }}</a>
+        <a href="{{ program.link_url }}"  {{ openExternalLinkInNewWindow(program.link_url) }}>{{ program.name }}</a>
       {% else %}
         {{ program.name }}
       {% endif %}
