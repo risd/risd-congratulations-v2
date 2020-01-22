@@ -72,7 +72,7 @@
             {% if date.related_links %}
               <ul class="calendar__links">
                 {% for link in date.related_links %}
-                  <li class="calendar__link button"><a href="{{ link.link_url }}" {% if link.link_url|includes("//") %}target="_blank" rel="noopener"{% endif %}>{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
+                  <li class="calendar__link button"><a href="{{ link.link_url }}" {{ openExternalLinkInNewWindow(link.link_url) }}>{{ link.link_text }}<span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a></li>
                 {% endfor %}
               </ul>
             {% endif %}

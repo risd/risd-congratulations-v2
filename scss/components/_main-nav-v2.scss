@@ -82,6 +82,14 @@
   display: block;
 }
 
+.main-nav__useful-links-heading ul > li > a {
+  display: block;
+}
+
+.main-nav__useful-link a {
+  width: 90%;
+}
+
 .main-nav__section-toggle {
   position: absolute;
   top: 0;
@@ -125,8 +133,8 @@
 
 .main-nav__useful-link-icon {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 10px;
+  right: 20px;
   width: 22px;
   height: 28px;
   transform-origin: 50% 50%;

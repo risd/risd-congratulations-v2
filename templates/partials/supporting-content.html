@@ -18,10 +18,7 @@
             <a
               class="supporting-content__button"
               href="{{ item.button_url }}"
-              {% if item.button_url|includes("://") %}
-                target="_blank"
-                rel="noopener"
-              {% endif %}
+              {{ openExternalLinkInNewWindow(item.button_url) }}
             >
               {{ item.button_text }}
               <span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span>

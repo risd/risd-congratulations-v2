@@ -45,8 +45,12 @@
     <section class="section--full home__hero">
       <div class="home__hero--center {{ hero_image_container_class }}" data-gallery-spec='{{ gallery_spec|json }}'></div>
       <div class="home__hero-text">
-        <h4 class="home__hero-caption">{{ home.intro_line }}</h4>
-        <div class="home__hero-logo">{% include "templates/partials/icons/wordmark.html" %}</div>
+        <div class="home__hero-lockup-wrapper home__hero--desktop">
+          {% include 'templates/partials/home-hero/header-lockup--desktop.svg' %}
+        </div>
+        <div class="home__hero-lockup-wrapper home__hero--mobile">
+          {% include 'templates/partials/home-hero/header-lockup--mobile.svg' %}
+        </div>
         {% if home.deposit_button_url && home.deposit_button_text %}
           <div class="home__hero-button button">
             <a href="{{ home.deposit_button_url }}">{{ home.deposit_button_text }} <span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span></a>

@@ -84981,7 +84981,7 @@ function ExternalLinks() {
   function appendExternalLinkIcon() {
     $(".".concat(classes.link)).each(function (index, link) {
       var $link = $(link);
-      $link.append("<span class=\"".concat(classes.icon, "\">\n          <svg viewBox=\"10 10 60 60\">\n            <path class=\"external-geometry\" d=\"M68.2,55.2L56,67.4c-1.4,1.4-3.9,1.4-5.4,0c-1.4-1.5-1.4-4,0-5.4l5.7-5.7H35.8c-2.1,0-3.8-1.8-3.8-3.8\n              c0-2.2,1.8-3.8,3.8-3.8h20.4L50.6,43c-1.4-1.5-1.4-3.9,0-5.4c1.5-1.4,4-1.4,5.4,0l12.2,12.2c0.7,0.7,1.2,1.8,1.2,2.7\n              C69.4,53.5,68.9,54.4,68.2,55.2z\"/>\n          </svg>\n        </span>"));
+      $link.children('a').append("<span class=\"".concat(classes.icon, "\">\n          <svg viewBox=\"10 10 60 60\">\n            <path class=\"external-geometry\" d=\"M68.2,55.2L56,67.4c-1.4,1.4-3.9,1.4-5.4,0c-1.4-1.5-1.4-4,0-5.4l5.7-5.7H35.8c-2.1,0-3.8-1.8-3.8-3.8\n              c0-2.2,1.8-3.8,3.8-3.8h20.4L50.6,43c-1.4-1.5-1.4-3.9,0-5.4c1.5-1.4,4-1.4,5.4,0l12.2,12.2c0.7,0.7,1.2,1.8,1.2,2.7\n              C69.4,53.5,68.9,54.4,68.2,55.2z\"/>\n          </svg>\n        </span>"));
     });
   }
 }

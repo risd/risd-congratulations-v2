@@ -114,7 +114,9 @@ module.exports = function(grunt) {
           .setTheme(themes.congratulationsV2)
       ],
       filters: [],
-      functions: [],
+      functions: [
+        'swig/open-external-link-in-new-window.js',
+      ],
     }
 
   });

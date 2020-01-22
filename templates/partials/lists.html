@@ -5,7 +5,7 @@
         <p class="list__text">
           <span class="list__intro">{{ list.intro_line }}</span>
       {% endif %}
-          <a href="{{ list_item.link }}" class="list__link">{{ list_item.title }}</a>
+          <a href="{{ list_item.link }}" class="list__link" {{ openExternalLinkInNewWindow(list_item.link) }}>{{ list_item.title }}</a>
       {% if loop.last %}
         </p>
       {% endif %}

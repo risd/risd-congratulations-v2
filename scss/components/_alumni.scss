@@ -5,7 +5,7 @@
 .alumni__person {
   margin-bottom: 2rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid $pop-color;
+  border-bottom: 2px solid $pop-color;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -112,7 +112,7 @@
 
 .alumni__link {
   a {
-    border: 1px solid $pop-color;
+    // border: 1px solid $pop-color;
     padding: 0.3em 0.5em;
   }
 }

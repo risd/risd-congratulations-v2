@@ -30,7 +30,8 @@
   </div>
   <div class="footer__final">
     <div class="footer__logo">
-      <a href="https://www.risd.edu/" target="_blank">
+      {% set footer_url = 'https://www.risd.edu/' %}
+      <a href="{{ footer_url }}" {{ openExternalLinkInNewWindow(footer_url) }}>
       {% include "templates/partials/icons/seal-simplified.html" %}
       {% include "templates/partials/icons/seal.html" %}
       </a>
@@ -62,7 +63,7 @@
           <ul>
       {% endif %}
             <li class="footer__social-link">
-              <a href="{{ link.url }}" target="_blank">
+              <a href="{{ link.url }}" {{ openExternalLinkInNewWindow(link.url) }}>
                 {{ link.text }}
               </a>
             </li>
@@ -78,7 +79,7 @@
           <p class="footer__title">{{ footer.external_websites_title }}</p>
           <ul>
       {% endif %}
-            <li class="footer__external-link"><a href="{{ website.link_url }}">{{ website.link_text }}</a></li>
+            <li class="footer__external-link"><a href="{{ website.link_url }}" {{ openExternalLinkInNewWindow(website.link_url) }}>{{ website.link_text }}</a></li>
       {% if loop.last %}
           </ul>
         </div>

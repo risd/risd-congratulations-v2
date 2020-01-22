@@ -175,7 +175,7 @@
 }
 
 .page__title-wrapper {
-  padding-top: 5rem;
+  padding-top: calc(var(--nav-height) + 3rem);
 }
 
 .page__title {
