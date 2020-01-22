@@ -133,6 +133,7 @@
   @extend %serif;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
+  color: var(--text-color);
 
   a {
     border-bottom: 2px solid var(--pop-color);
