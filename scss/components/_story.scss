@@ -108,7 +108,7 @@
     @extend %small-caps;
     font-weight: bold;
     background-color: $pop-color;
-    // border: 1px solid $pop-color;
+    // border: 2px solid $pop-color;
     padding: 0.4em 0.5em 0.3em 0.6em;
     // font-variant: small-caps;
     // font-feature-settings: "c2sc", "smcp";
@@ -135,7 +135,7 @@
       padding: 0.5em 0em;
       a {
         display: inline-block;
-        border-bottom: 1px solid $pop-color;
+        border-bottom: 2px solid $pop-color;
       }
     }
   }
@@ -148,8 +148,8 @@
     margin-bottom: 1.5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
-    border-top: 1px solid $pop-color;
-    border-bottom: 1px solid $pop-color;
+    border-top: 2px solid $pop-color;
+    border-bottom: 2px solid $pop-color;
     text-align: left;
     float: none;
     margin-right: 0rem;
