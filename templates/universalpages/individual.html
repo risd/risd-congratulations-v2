@@ -103,7 +103,7 @@
     {% for content in item.supporting_content %}
       {% set content.name = content.title %}
     {% endfor %}
-    <section class="section--contained program">
+    <section class="section--contained program program--no-padding">
       {% include "templates/partials/programs.html" with { programs: item.supporting_content } only %}
     </section>
   {% endif %}
