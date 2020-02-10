@@ -2,7 +2,12 @@
   <div class="program__item">
   {% if program.image %}
     <div class="program__image">
-      <a href="{{ program.link_url }}" {{ openExternalLinkInNewWindow(program.link_url) }}><img src="{{ program.image|imageSize(600) }}" alt=""></a>
+      {% if program.link_url %}
+        <a href="{{ program.link_url }}" {{ openExternalLinkInNewWindow(program.link_url) }}><img src="{{ program.image|imageSize(600) }}" alt=""></a>
+      {% else %}
+        <img src="{{ program.image|imageSize(600) }}" alt="">
+      {% endif %}
+      
     </div>
   {% endif %}
     <div class="program__text">
@@ -14,6 +19,19 @@
       {% endif %}
       </h3>
       <div class="program__description">{{ program.description|safe }}</div>
+
+      {% if program.button_text && program.button_url %}
+        <div class="button">
+          <a
+            class="supporting-content__button"
+            href="{{ program.button_url }}"
+            {{ openExternalLinkInNewWindow(program.button_url) }}
+          >
+            {{ program.button_text }}
+            <span class="button__arrow">{% include "templates/partials/icons/arrow--naked.html" %}</span>
+          </a>
+        </div>
+      {% endif %}
     </div>
   </div>
 {% endfor %}
