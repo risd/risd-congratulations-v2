@@ -1,6 +1,6 @@
 {
   "name": "risd-congratulations-v2",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Grunt site generator for risd/webhook",
   "repository": {
     "type": "git",
