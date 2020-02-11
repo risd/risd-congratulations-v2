@@ -53,6 +53,16 @@
   };
 }
 
+.program--no-padding .program__text {
+  @include respond-above(medium) {
+    padding-left: 0;
+  }
+}
+
+.program__image + .program__text {
+  padding-left: 2rem;
+}
+
 .program__title {
   @include text-size($sans-l);
   margin-bottom: 1rem;

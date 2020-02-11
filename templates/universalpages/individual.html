@@ -98,11 +98,15 @@
 
   {# Supporting Content ------------------------------------------------------------ #}
 
-  {% for content in item.supporting_content %}
-    {% include "templates/partials/supporting-content.html" with {
-      item: content
-    } only %}
-  {% endfor %}
+  {% if item.supporting_content %}
+    {# set .name to .title for compatibility with the programs component #}
+    {% for content in item.supporting_content %}
+      {% set content.name = content.title %}
+    {% endfor %}
+    <section class="section--contained program program--no-padding">
+      {% include "templates/partials/programs.html" with { programs: item.supporting_content } only %}
+    </section>
+  {% endif %}
 
 
   {# Stories ------------------------------------------------------------ #}
