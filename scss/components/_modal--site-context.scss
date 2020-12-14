@@ -178,7 +178,20 @@ body.modal--showing .modal {
 .modal__button {
   display: inline-block;
   margin-top: 1.6rem;
+  // centered-button:start
+  max-width: 250px;
+  text-align: center;
+  background: var(--text-color);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-size: 0.8rem;
 }
+.modal__button.button a {
+  background: transparent;
+}
+// centered-button:end
 
 .modal__help {
   --animateion-translate: 0;
