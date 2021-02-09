@@ -14,7 +14,7 @@
   "scripts": {
     "start": "npm run develop",
     "build": "grunt build",
-    "deploy": "rm-wh deploy",
+    "deploy": "npm test && rm-wh deploy",
     "build-page": "grunt build-page",
     "build-pages": "grunt build-pages",
     "build-template": "grunt build-template",
