@@ -19,7 +19,8 @@
     "build-pages": "grunt build-pages",
     "build-template": "grunt build-template",
     "develop": "grunt --force",
-    "configuration": "rm-wh conf congratulations-v2"
+    "configuration": "rm-wh conf congratulations-v2",
+    "test": "tape test/*.js"
   },
   "homepage": "https://github.com/risd/webhook-generate",
   "dependencies": {
@@ -81,7 +82,8 @@
   },
   "devDependencies": {
     "grunt-cli": "^1.2.0",
-    "rm-webhook": "^2.0.5"
+    "rm-webhook": "^2.0.5",
+    "tape": "^5.1.1"
   },
   "risd.systems": {
     "generate": "2.5.2"
